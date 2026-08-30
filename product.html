@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madhubani Terracotta Wall Panel | CraftCapital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744;
+      --secondary: #243358;
+      --accent: #F5C518;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1A1A2E;
+      --text-muted: #4A4A6A;
+      --border: #DDDDE8;
+    }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
+    h1, h2, h3, h4, .logo { font-family: 'Playfair Display', Georgia, serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    
+    /* Navbar */
+    .navbar { background: var(--surface); padding: 1rem 0; box-shadow: 0 2px 12px rgba(26,39,68,0.08); position: sticky; top: 0; z-index: 100; }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { text-decoration: none; color: #1A2744; font-size: 1.5rem; font-weight: 700; }
+    .logo span { color: var(--secondary); }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .cart-icon { text-decoration: none; font-size: 1.25rem; position: relative; }
+    .cart-badge { position: absolute; top: -8px; right: -12px; background: #1A2744; color: white; font-size: 0.75rem; padding: 2px 6px; border-radius: 10px; font-weight: bold; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; text-align: center; }
+    .btn-primary { background: #1A2744; color: white; }
+    .btn-primary:hover { background: #A0350B; }
+    .btn-secondary { background: var(--secondary); color: white; }
+    .btn-outline { border: 1px solid #1A2744; color: #1A2744; background: transparent; }
+    .btn-outline:hover { background: #1A2744; color: white; }
+    .btn-ghost { background: transparent; color: var(--text-muted); text-decoration: underline; padding: 0.5rem; }
+    .btn-ghost:hover { color: #1A2744; }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .btn-block { display: block; width: 100%; box-sizing: border-box; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    
+    /* Layout */
+    .breadcrumb { margin: 2rem 0 1rem; color: var(--text-muted); font-size: 0.875rem; }
+    .breadcrumb a { color: #1A2744; text-decoration: none; }
+    
+    .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+    
+    /* Gallery */
+    .gallery-main { aspect-ratio: 1; background: #E8E5DC; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(26,39,68,0.08); }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .thumb { aspect-ratio: 1; background: #E8E5DC; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1.5px solid var(--border); transition: all 0.2s; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb:hover, .thumb.active { border-color: #1A2744; transform: translateY(-2px); }
+    
+    /* Info */
+    .badges { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .badge { background: var(--bg); border: 1px solid var(--accent); color: var(--secondary); font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 500; }
+    .badge-verified { background: #E8F5E9; border-color: #4CAF50; color: #2E7D32; }
+    .product-title { font-size: 2.5rem; margin: 0 0 0.5rem 0; color: var(--secondary); line-height: 1.2; }
+    .artisan-link { color: var(--text-muted); text-decoration: none; font-size: 1.1rem; display: inline-block; margin-bottom: 1.5rem; border-bottom: 1px dashed var(--text-muted); }
+    .artisan-link:hover { color: #1A2744; border-color: #1A2744; }
+    
+    .pricing-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .price { font-size: 2rem; font-weight: 700; color: #1A2744; margin: 0 0 0.5rem 0; }
+    .price-unit { font-size: 1rem; color: var(--text-muted); font-weight: normal; }
+    .meta-list { list-style: none; padding: 0; margin: 1rem 0 0; color: var(--text-muted); font-size: 0.95rem; display: grid; gap: 0.5rem; }
+    .meta-list li::before { content: "•"; color: #1A2744; display: inline-block; width: 1em; }
+    
+    .short-desc { line-height: 1.6; margin-bottom: 2rem; font-size: 1.1rem; }
+    
+    .purchase-actions { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+    .qty-selector { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .qty-selector label { font-weight: 500; }
+    .qty-input { width: 80px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem; text-align: center; }
+    .total-calc { font-weight: 600; color: var(--text); }
+    
+    .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .action-buttons .btn-primary { grid-column: span 2; padding: 1rem; font-size: 1.1rem; }
+    
+    .enquiry-note { background: #F5F0E6; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: var(--text-muted); display: flex; gap: 0.5rem; align-items: flex-start; }
+    
+    /* Tabs */
+    .tabs-section { margin-bottom: 4rem; }
+    .tabs-nav { display: flex; gap: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+    .tab-btn { background: none; border: none; padding: 1rem 0; font-size: 1.1rem; font-family: 'Playfair Display', Georgia, serif; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; }
+    .tab-btn.active { color: #1A2744; border-bottom-color: #1A2744; font-weight: 600; }
+    .tab-content { display: none; line-height: 1.6; }
+    .tab-content.active { display: block; }
+    
+    /* Specs table */
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table th, .specs-table td { padding: 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+    .specs-table th { width: 30%; font-weight: 500; color: var(--text-muted); }
+    
+    /* Reviews */
+    .review { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .stars { color: var(--accent); }
+    .reviewer { font-weight: 500; }
+    
+    /* Related Products */
+    .related-section { margin-bottom: 4rem; }
+    .related-section h2 { font-size: 2rem; margin-bottom: 2rem; color: var(--secondary); text-align: center; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .product-card .image { height: 160px; background: linear-gradient(135deg, #DDDDE8, #F2E3D5); display: flex; justify-content: center; align-items: center; font-size: 3rem; text-decoration: none; }
+    .product-card .info { padding: 1rem; }
+    .product-card .title { font-size: 1rem; margin: 0 0 0.5rem; font-weight: 600; }
+    .product-card .price { font-size: 1.125rem; }
+    
+    /* Footer */
+    .footer { background: #1A0F0A; color: #DDDDE8; padding: 4rem 0 2rem; margin-top: auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; font-size: 1.5rem; margin-top: 0; }
+    .footer h4 { color: white; font-size: 1.1rem; margin-top: 0; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer a { color: #DDDDE8; text-decoration: none; transition: color 0.2s; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .product-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> > <a href="marketplace.html">Marketplace</a> > Madhubani Terracotta Wall Panel
+  </div>
+  
+  <div class="product-layout">
+    <!-- Image Gallery -->
+    <div class="gallery">
+      <div class="gallery-main"><img id="mainProductImg" src="images/wall_panel.jpg" alt="Madhubani Terracotta Wall Panel"></div>
+      <div class="gallery-thumbs">
+        <div class="thumb active" onclick="document.getElementById('mainProductImg').src='images/wall_panel.jpg';"><img src="images/wall_panel.jpg" alt="Angle 1"></div>
+        <div class="thumb" onclick="document.getElementById('mainProductImg').src='images/artisan_hands.jpg';"><img src="images/artisan_hands.jpg" alt="Crafting Process"></div>
+        <div class="thumb" onclick="document.getElementById('mainProductImg').src='images/gallery_kiln.jpg';"><img src="images/gallery_kiln.jpg" alt="Kiln Firing"></div>
+        <div class="thumb" onclick="document.getElementById('mainProductImg').src='images/gallery_packaging.jpg';"><img src="images/gallery_packaging.jpg" alt="Safe Packaging"></div>
+      </div>
+    </div>
+    
+    <!-- Product Info -->
+    <div class="product-info">
+      <div class="badges">
+        <span class="badge">Panchmura Cluster</span>
+        <span class="badge badge-verified">✓ Verified Artisan</span>
+      </div>
+      
+      <h1 class="product-title">Madhubani Terracotta Wall Panel</h1>
+      <a href="artisan-profile.html" class="artisan-link">by Ranjit Kumar Das, Panchmura</a>
+      
+      <div class="pricing-box">
+        <div class="price">₹850 <span class="price-unit">per piece</span></div>
+        <ul class="meta-list">
+          <li><strong>MOQ:</strong> Minimum order 25 pieces</li>
+          <li><strong>Lead time:</strong> 10–15 working days</li>
+          <li><strong>Capacity:</strong> Can produce up to 200 pcs/month</li>
+        </ul>
+      </div>
+      
+      <p class="short-desc">
+        Intricately hand-carved terracotta wall panel featuring traditional Madhubani motifs. Fired using the indigenous Panchmura technique for a rich, natural rustic finish. Perfect for corporate gifting or boutique hotel décor.
+      </p>
+      
+      <div class="purchase-actions">
+        <div class="qty-selector">
+          <label for="qty">Quantity:</label>
+          <input type="number" id="qty" class="qty-input" value="25" min="25" step="5" onchange="document.getElementById('totalCalc').textContent = 'Total: ₹' + (this.value * 850).toLocaleString('en-IN');">
+          <span class="total-calc" id="totalCalc">Total: ₹21,250</span>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="cartManager.addItem({id:'prod-wall-panel',name:'Madhubani Terracotta Wall Panel',price:850,image:'images/wall_panel.jpg'}, parseInt(document.getElementById('qty').value) || 25)">Add to Cart</button>
+          <button class="btn btn-outline" onclick="alert('Sample request submitted! Our procurement desk will contact you within 24 hours.');">Request a Sample</button>
+          <button class="btn btn-ghost" onclick="location.href='contact.html'">Ask About Bulk Pricing</button>
+        </div>
+      </div>
+      
+      <div class="enquiry-note">
+        <span>ℹ️</span>
+        <span><strong>Need procurement help?</strong> Our dedicated team will contact you within 24 hours to assist with shipping logistics and bulk customization.</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active">Description</button>
+      <button class="tab-btn">Specifications</button>
+      <button class="tab-btn">Artisan Story</button>
+      <button class="tab-btn">Reviews (2)</button>
+    </div>
+    
+    <div class="tab-content active">
+      <p>This exquisite terracotta wall panel is a testament to the skill of Panchmura artisans. Blending the robust texture of Bankura clay with the delicate, narrative style of Madhubani art, this piece serves as a striking focal point for any interior space.</p>
+      <p>Each panel is entirely hand-sculpted. The artisans prepare the local clay by mixing it with sand to prevent cracking during firing. The intricate designs are carved freehand using bamboo tools before the piece is left to sun-dry for several days. Finally, it undergoes open-air firing in traditional kilns, a process that imparts the distinctive earthen terracotta red and subtle charcoal gradients.</p>
+    </div>
+    
+    <div class="tab-content" style="display:none;">
+      <table class="specs-table">
+        <tr><th>Material</th><td>100% Natural River Clay (Terracotta)</td></tr>
+        <tr><th>Dimensions</th><td>12" x 12" x 1.5" (L x W x D)</td></tr>
+        <tr><th>Finish</th><td>Natural Fired (Unglazed)</td></tr>
+        <tr><th>Colour</th><td>Earthy Red with natural firing variations</td></tr>
+        <tr><th>Weight</th><td>Approx 1.8 kg per piece</td></tr>
+        <tr><th>Packaging</th><td>Individual corrugated boxes with eco-friendly honeycomb wrap. Packed in master cartons of 10 for safe transit.</td></tr>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Related Products -->
+  <div class="related-section">
+    <h2>More from Panchmura Cluster</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <a href="product.html" class="image" style="height:160px;overflow:hidden;display:block;"><img src="images/panchmura_horse.jpg" alt="Panchmura Horse (Large)" style="width:100%;height:100%;object-fit:cover;"></a>
+        <div class="info" style="padding:1rem;">
+          <h3 class="title" style="font-size:1rem;margin:0 0 .5rem;font-weight:600;">Panchmura Horse (Large)</h3>
+          <div class="price" style="font-weight:700;color:#1A2744;">₹2,400</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product.html" class="image" style="height:160px;overflow:hidden;display:block;"><img src="images/terracotta_planters.jpg" alt="Terracotta Planter Set" style="width:100%;height:100%;object-fit:cover;"></a>
+        <div class="info" style="padding:1rem;">
+          <h3 class="title" style="font-size:1rem;margin:0 0 .5rem;font-weight:600;">Terracotta Planter Set</h3>
+          <div class="price" style="font-weight:700;color:#1A2744;">₹680</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product.html" class="image" style="height:160px;overflow:hidden;display:block;"><img src="images/terracotta_vase.jpg" alt="Terracotta Vase" style="width:100%;height:100%;object-fit:cover;"></a>
+        <div class="info" style="padding:1rem;">
+          <h3 class="title" style="font-size:1rem;margin:0 0 .5rem;font-weight:600;">Terracotta Vase (Slim Neck)</h3>
+          <div class="price" style="font-weight:700;color:#1A2744;">₹560</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product.html" class="image" style="height:160px;overflow:hidden;display:block;"><img src="images/wind_chime.jpg" alt="Terracotta Wind Chime" style="width:100%;height:100%;object-fit:cover;"></a>
+        <div class="info" style="padding:1rem;">
+          <h3 class="title" style="font-size:1rem;margin:0 0 .5rem;font-weight:600;">Terracotta Wind Chime</h3>
+          <div class="price" style="font-weight:700;color:#1A2744;">₹380</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="cart.html">My Cart</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Simple tab logic for preview
+  document.querySelectorAll('.tab-btn').forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content')[index].style.display = 'block';
+    });
+  });
+</script>
+</body>
+</html>
+

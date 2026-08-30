@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftCapital Weekly Archive — West Bengal Terracotta Craft Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744;
+      --secondary: #243358;
+      --accent: #F5C518;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1A1A2E;
+      --text-muted: #4A4A6A;
+      --border: #DDDDE8;
+      --shadow: 0 2px 12px rgba(26,39,68,0.08);
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text); margin-top: 0; }
+    a { color: #1A2744; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Nav & Footer (same as global) */
+    .navbar { background-color: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .logo span { color: #1A2744; }
+    .nav-links { display: flex; list-style: none; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { color: var(--text); font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; border: none; transition: background-color 0.3s; text-decoration: none; }
+    .btn-primary { background-color: #1A2744; color: var(--surface); }
+    .btn-primary:hover { background-color: var(--secondary); }
+    .btn-outline { background-color: transparent; border: 1px solid #1A2744; color: #1A2744; }
+    .btn-outline:hover { background-color: #1A2744; color: var(--surface); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+    .cart-icon { position: relative; font-size: 1.25rem; text-decoration: none; }
+    .cart-badge { position: absolute; top: -8px; right: -8px; background-color: #1A2744; color: white; font-size: 0.75rem; border-radius: 50%; padding: 0.15rem 0.4rem; font-weight: bold; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    /* Archive Specific */
+    .hero { background-color: var(--surface); padding: 4rem 0; border-bottom: 1px solid var(--border); text-align: center; }
+    .hero h1 { font-size: 3rem; color: #1A2744; margin-bottom: 1rem; }
+    .search-bar { max-width: 500px; margin: 0 auto 2rem; display: flex; gap: 0.5rem; }
+    .search-bar input { flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font-body); }
+    .filter-tabs { display: flex; justify-content: center; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+    .filter-tabs li a { padding: 0.5rem 1.5rem; border-radius: 20px; background: var(--bg); color: var(--text-muted); font-weight: 500; border: 1px solid var(--border); }
+    .filter-tabs li a.active, .filter-tabs li a:hover { background: #1A2744; color: white; border-color: #1A2744; }
+    
+    .archive-layout { display: grid; grid-template-columns: 3fr 1fr; gap: 3rem; padding: 4rem 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    
+    .past-issue-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform 0.2s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .past-issue-card:hover { transform: translateY(-4px); }
+    .past-issue-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .past-issue-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .past-issue-meta { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .past-issue-content h4 { font-size: 1.25rem; margin-bottom: 1rem; flex: 1; }
+    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tag { font-size: 0.75rem; padding: 0.25rem 0.5rem; background: var(--bg); border-radius: 4px; color: var(--secondary); border: 1px solid var(--border); }
+    
+    .sidebar { background: var(--surface); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); height: fit-content; position: sticky; top: 100px; }
+    .sidebar h3 { color: #1A2744; }
+    .sidebar input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; }
+    .sidebar .btn { width: 100%; }
+
+    .pagination { text-align: center; margin-top: 3rem; }
+
+    /* Footer */
+    .footer { background-color: var(--surface); border-top: 1px solid var(--border); padding: 4rem 0 2rem; margin-top: 4rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; margin-bottom: 1rem; }
+    .footer h4 { margin-bottom: 1rem; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer ul a { color: var(--text-muted); }
+    .footer ul a:hover { color: #1A2744; }
+    .footer p { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>CraftCapital Weekly Archive</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search issues, topics, artisans...">
+      <button class="btn btn-primary">Search</button>
+    </div>
+    <ul class="filter-tabs">
+      <li><a href="#" class="active">All Issues</a></li>
+      <li><a href="#">2026</a></li>
+      <li><a href="#">2025</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container archive-layout">
+  <div>
+    <div class="grid">
+      <!-- Issues -->
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #DDDDE8;">🐴</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #12 — Aug 25, 2026</div>
+          <h4>Panchmura Horses: From Rural Hearths to Corporate Boardrooms</h4>
+          <div class="tags"><span class="tag">Panchmura</span><span class="tag">Feature Story</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #F5C518;">🎎</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #11 — Aug 18, 2026</div>
+          <h4>Krishnanagar's Clay Dolls: A 400-Year Legacy Finding New Buyers</h4>
+          <div class="tags"><span class="tag">Krishnanagar</span><span class="tag">History</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #1A2744; color:white;">🪔</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #10 — Aug 11, 2026</div>
+          <h4>Diwali 2026: Pre-Order Guide for Corporate Gifting Managers</h4>
+          <div class="tags"><span class="tag">Gifting</span><span class="tag">Diwali</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #243358; color:white;">🤝</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #09 — Aug 4, 2026</div>
+          <h4>Inside a Panchmura SHG: How Cooperatives Are Changing Artisan Income</h4>
+          <div class="tags"><span class="tag">Panchmura</span><span class="tag">Social Impact</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #DDDDE8;">🏺</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #08 — Jul 28, 2026</div>
+          <h4>Hotel Décor Buyer's Handbook: Sourcing Authentic Terracotta</h4>
+          <div class="tags"><span class="tag">Hospitality</span><span class="tag">Guide</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #F5C518;">☕</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #07 — Jul 21, 2026</div>
+          <h4>Clay Tea Sets & the Rise of Slow Living Hospitality</h4>
+          <div class="tags"><span class="tag">Functional Ware</span><span class="tag">Trends</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #1A2744; color:white;">👨🏽‍🎨</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #06 — Jul 14, 2026</div>
+          <h4>Meet Ranjit Das: 30 Years of Crafting Panchmura Horses</h4>
+          <div class="tags"><span class="tag">Artisan Story</span><span class="tag">Panchmura</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #243358; color:white;">✨</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #05 — Jul 7, 2026</div>
+          <h4>Summer New Arrivals: 15 Fresh Pieces from Both Clusters</h4>
+          <div class="tags"><span class="tag">New Products</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #DDDDE8;">📦</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #04 — Jun 30, 2026</div>
+          <h4>Understanding MOQ, Lead Time & Bulk Pricing</h4>
+          <div class="tags"><span class="tag">Buying Guide</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #F5C518;">🛋️</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #03 — Jun 23, 2026</div>
+          <h4>Why Interior Designers Are Turning to Terracotta</h4>
+          <div class="tags"><span class="tag">Interior Design</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #1A2744; color:white;">⭐</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #02 — Jun 16, 2026</div>
+          <h4>Our First Verified Artisans: Introducing the Panchmura 12</h4>
+          <div class="tags"><span class="tag">Artisans</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #243358; color:white;">👋</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #01 — Jun 9, 2026</div>
+          <h4>Welcome to Kolkata Craft Weekly: Why We Started This</h4>
+          <div class="tags"><span class="tag">Announcement</span></div>
+          <a href="digest-issue.html" class="btn btn-outline btn-sm">Read Issue</a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="pagination">
+      <button class="btn btn-outline">Load More Issues</button>
+    </div>
+  </div>
+
+  <aside>
+    <div class="sidebar">
+      <h3>Never Miss an Issue</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Join 340+ buyers receiving curated insights every Monday.</p>
+      <form>
+        <input type="email" placeholder="Work Email" required>
+        <button type="submit" class="btn btn-primary">Subscribe Free</button>
+      </form>
+    </div>
+  </aside>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace | CraftCapital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744;
+      --secondary: #243358;
+      --accent: #F5C518;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1A1A2E;
+      --text-muted: #4A4A6A;
+      --border: #DDDDE8;
+    }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
+    h1, h2, h3, h4, .logo { font-family: 'Playfair Display', Georgia, serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    
+    /* Navbar styles */
+    .navbar { background: var(--surface); padding: 1rem 0; box-shadow: 0 2px 12px rgba(26,39,68,0.08); position: sticky; top: 0; z-index: 100; }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { text-decoration: none; color: #1A2744; font-size: 1.5rem; font-weight: 700; }
+    .logo span { color: var(--secondary); }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .cart-icon { text-decoration: none; font-size: 1.25rem; position: relative; }
+    .cart-badge { position: absolute; top: -8px; right: -12px; background: #1A2744; color: white; font-size: 0.75rem; padding: 2px 6px; border-radius: 10px; font-weight: bold; }
+    .btn { display: inline-block; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; text-align: center; }
+    .btn-primary { background: #1A2744; color: white; }
+    .btn-primary:hover { background: #A0350B; }
+    .btn-outline { border: 1px solid #1A2744; color: #1A2744; background: transparent; }
+    .btn-outline:hover { background: #1A2744; color: white; }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    
+    /* Marketplace Layout */
+    .breadcrumb { margin: 2rem 0 1rem; color: var(--text-muted); font-size: 0.875rem; }
+    .breadcrumb a { color: #1A2744; text-decoration: none; }
+    .page-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem; }
+    .page-header h1 { font-size: 2.5rem; margin: 0; color: var(--secondary); }
+    
+    .marketplace-layout { display: flex; gap: 2rem; margin-bottom: 4rem; }
+    .sidebar { width: 280px; flex-shrink: 0; background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); height: fit-content; }
+    .main-grid { flex-grow: 1; }
+    
+    /* Filters */
+    .filter-group { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+    .filter-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .filter-group h3 { font-size: 1.1rem; margin-top: 0; margin-bottom: 1rem; }
+    .search-bar { width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; }
+    .filter-label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; cursor: pointer; }
+    .filter-label input { margin-right: 0.5rem; accent-color: #1A2744; }
+    .clear-filters { width: 100%; margin-top: 1rem; }
+    
+    /* Products */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(26,39,68,0.12); }
+    .product-image { height: 200px; background: #E8E5DC; position: relative; overflow: hidden; display: block; text-decoration: none; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .product-card:hover .product-image img { transform: scale(1.06); }
+    .product-info { padding: 1rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .cluster-badge { display: inline-block; background: var(--bg); border: 1px solid var(--accent); color: var(--secondary); font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; margin-bottom: 0.5rem; width: fit-content; }
+    .product-title { font-size: 1rem; margin: 0 0 0.5rem 0; font-weight: 600; line-height: 1.4; flex-grow: 1; }
+    .product-price { font-weight: 700; color: #1A2744; font-size: 1.125rem; margin-bottom: 0.25rem; }
+    .moq-badge { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .product-actions { display: flex; gap: 0.5rem; }
+    .product-actions .btn { flex-grow: 1; }
+    .btn-icon { padding: 0.5rem; width: 40px; }
+    
+    /* Pagination */
+    .pagination { display: flex; justify-content: center; gap: 0.5rem; margin-top: 3rem; }
+    .page-link { display: flex; justify-content: center; align-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); text-decoration: none; color: var(--text); font-weight: 500; }
+    .page-link:hover, .page-link.active { background: #1A2744; color: white; border-color: #1A2744; }
+    
+    /* Footer */
+    .footer { background: #1A0F0A; color: #DDDDE8; padding: 4rem 0 2rem; margin-top: auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; font-size: 1.5rem; margin-top: 0; }
+    .footer h4 { color: white; font-size: 1.1rem; margin-top: 0; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer a { color: #DDDDE8; text-decoration: none; transition: color 0.2s; }
+    .footer a:hover { color: var(--accent); }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .marketplace-layout { flex-direction: column; }
+      .sidebar { width: 100%; box-sizing: border-box; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> > Marketplace
+  </div>
+  
+  <div class="page-header">
+    <h1>All Products</h1>
+    <span>Showing 1-12 of 145 results</span>
+  </div>
+
+  <div class="marketplace-layout">
+    <!-- Sidebar Filters -->
+    <aside class="sidebar">
+      <div class="filter-group">
+        <input type="text" class="search-bar" placeholder="Search products...">
+      </div>
+      
+      <div class="filter-group">
+        <h3>Category</h3>
+        <label class="filter-label"><input type="radio" name="category" checked> All</label>
+        <label class="filter-label"><input type="radio" name="category"> Wall Décor</label>
+        <label class="filter-label"><input type="radio" name="category"> Figurines & Sculptures</label>
+        <label class="filter-label"><input type="radio" name="category"> Planters & Pots</label>
+        <label class="filter-label"><input type="radio" name="category"> Gift Sets</label>
+        <label class="filter-label"><input type="radio" name="category"> Functional Ware</label>
+        <label class="filter-label"><input type="radio" name="category"> Ritual Items</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>Cluster</h3>
+        <label class="filter-label"><input type="radio" name="cluster" checked> All</label>
+        <label class="filter-label"><input type="radio" name="cluster"> Panchmura (Bankura)</label>
+        <label class="filter-label"><input type="radio" name="cluster"> Krishnanagar (Nadia)</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>Price Range</h3>
+        <label class="filter-label"><input type="checkbox"> ₹500–₹2000</label>
+        <label class="filter-label"><input type="checkbox"> ₹2000–₹5000</label>
+        <label class="filter-label"><input type="checkbox"> ₹5000–₹15000</label>
+        <label class="filter-label"><input type="checkbox"> ₹15000+</label>
+      </div>
+
+      <div class="filter-group">
+        <h3>Minimum Order Qty</h3>
+        <label class="filter-label"><input type="radio" name="moq" checked> Any</label>
+        <label class="filter-label"><input type="radio" name="moq"> 10+</label>
+        <label class="filter-label"><input type="radio" name="moq"> 25+</label>
+        <label class="filter-label"><input type="radio" name="moq"> 50+</label>
+        <label class="filter-label"><input type="radio" name="moq"> 100+</label>
+      </div>
+      
+      <div class="filter-group">
+        <h3>Sort By</h3>
+        <select class="search-bar">
+          <option>Newest</option>
+          <option>Price Low-High</option>
+          <option>Price High-Low</option>
+          <option>Most Popular</option>
+        </select>
+      </div>
+
+      <button class="btn btn-outline clear-filters">Clear Filters</button>
+    </aside>
+
+    <!-- Main Grid -->
+    <main class="main-grid">
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/wall_panel.jpg" alt="Madhubani Terracotta Wall Panel"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Madhubani Terracotta Wall Panel</h3>
+            <div class="product-price">₹850/pc</div>
+            <div class="moq-badge">MOQ 25</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-wall-panel',name:'Madhubani Terracotta Wall Panel',price:850,image:'images/wall_panel.jpg'}, 25)">🛒</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/clay_figurines.jpg" alt="Krishnanagar Clay Figurines Set"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Krishnanagar</span>
+            <h3 class="product-title">Krishnanagar Clay Figurines Set (12-piece)</h3>
+            <div class="product-price">₹1,200/set</div>
+            <div class="moq-badge">MOQ 10</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-2',name:'Krishnanagar Clay Figurines Set',price:1200,image:'images/clay_figurines.jpg'}, 10)">🛒</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/panchmura_horse.jpg" alt="Panchmura Horse (Large)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Panchmura Horse (Large)</h3>
+            <div class="product-price">₹2,400/pc</div>
+            <div class="moq-badge">MOQ 5</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-1',name:'Panchmura Horse — Signature Large',price:2400,image:'images/panchmura_horse.jpg'}, 5)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/terracotta_planters.jpg" alt="Terracotta Planter Set (3-piece)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Terracotta Planter Set (3-piece)</h3>
+            <div class="product-price">₹680/set</div>
+            <div class="moq-badge">MOQ 20</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-3',name:'Terracotta Planter Set (3-piece)',price:680,image:'images/terracotta_planters.jpg'}, 20)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/pendant_lamp.jpg" alt="Clay Dhokra Art Pendant Lamp"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Krishnanagar</span>
+            <h3 class="product-title">Clay Dhokra Art Pendant Lamp</h3>
+            <div class="product-price">₹3,200/pc</div>
+            <div class="moq-badge">MOQ 5</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-lamp',name:'Clay Dhokra Art Pendant Lamp',price:3200,image:'images/pendant_lamp.jpg'}, 5)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/gift_box.jpg" alt="Festive Corporate Gift Box"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Krishnanagar</span>
+            <h3 class="product-title">Festive Corporate Gift Box</h3>
+            <div class="product-price">₹1,800/box</div>
+            <div class="moq-badge">MOQ 50</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-4',name:'Festive Corporate Gift Box — Diwali',price:1800,image:'images/gift_box.jpg'}, 50)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/terracotta_vase.jpg" alt="Terracotta Vase (Slim Neck)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Terracotta Vase (Slim Neck)</h3>
+            <div class="product-price">₹560/pc</div>
+            <div class="moq-badge">MOQ 30</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-vase',name:'Terracotta Vase (Slim Neck)',price:560,image:'images/terracotta_vase.jpg'}, 30)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/clay_lamp_diya.jpg" alt="Ritual Diya Set (9-piece)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Ritual Diya Set (9-piece)</h3>
+            <div class="product-price">₹420/set</div>
+            <div class="moq-badge">MOQ 100</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-diya',name:'Ritual Diya Set (9-piece)',price:420,image:'images/clay_lamp_diya.jpg'}, 100)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/clay_tea_set.jpg" alt="Clay Tea Set (6-piece)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Krishnanagar</span>
+            <h3 class="product-title">Clay Tea Set (6-piece)</h3>
+            <div class="product-price">₹1,100/set</div>
+            <div class="moq-badge">MOQ 15</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-tea-set',name:'Clay Tea Set (6-piece)',price:1100,image:'images/clay_tea_set.jpg'}, 15)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/wind_chime.jpg" alt="Terracotta Wind Chime"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Terracotta Wind Chime</h3>
+            <div class="product-price">₹380/pc</div>
+            <div class="moq-badge">MOQ 50</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-chime',name:'Terracotta Wind Chime',price:380,image:'images/wind_chime.jpg'}, 50)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/ganesha_figurine.jpg" alt="Ganesha Figurine (Hand-painted)"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Krishnanagar</span>
+            <h3 class="product-title">Ganesha Figurine (Hand-painted)</h3>
+            <div class="product-price">₹1,650/pc</div>
+            <div class="moq-badge">MOQ 10</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-ganesha',name:'Ganesha Figurine (Hand-painted)',price:1650,image:'images/ganesha_figurine.jpg'}, 10)">🛒</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card">
+          <a href="product.html" class="product-image"><img src="images/wall_frame.jpg" alt="Nakshi Wall Frame Set"></a>
+          <div class="product-info">
+            <span class="cluster-badge">Panchmura</span>
+            <h3 class="product-title">Nakshi Wall Frame Set</h3>
+            <div class="product-price">₹2,200/set</div>
+            <div class="moq-badge">MOQ 15</div>
+            <div class="product-actions">
+              <a href="product.html" class="btn btn-outline btn-sm">View Details</a>
+              <button class="btn btn-primary btn-sm btn-icon" onclick="cartManager.addItem({id:'prod-wall-frame',name:'Nakshi Wall Frame Set',price:2200,image:'images/wall_frame.jpg'}, 15)">🛒</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">...</a>
+        <a href="#" class="page-link">Next</a>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="cart.html">My Cart</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>West Bengal State Handicrafts & Terracotta Expo 2026 | CraftCapital Events</title>
+  <meta name="description" content="Explore the West Bengal State Handicrafts & Terracotta Expo 2026 at Biswa Bangla Mela Prangan (Milan Mela), Kolkata. Live artisan demonstrations and B2B procurement.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    .event-hero {
+      background: linear-gradient(135deg, #1A2744 0%, #243358 100%);
+      color: #fff;
+      padding: 4rem 0 3.5rem;
+    }
+    .event-hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .event-tag-pill {
+      background: #F5C518;
+      color: #1A2744;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .event-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .event-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .meta-item { display: flex; align-items: center; gap: 8px; }
+    .meta-icon { font-size: 1.2rem; }
+    
+    .event-poster-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+      border: 3px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .event-poster-card img { width: 100%; height: 320px; object-fit: cover; display: block; }
+    
+    /* Layout */
+    .event-content-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3.5rem;
+      padding: 4rem 0;
+    }
+    .event-article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #1A2744;
+      margin: 2rem 0 1rem;
+    }
+    .event-article h2:first-of-type { margin-top: 0; }
+    .event-article p { font-size: 1.05rem; line-height: 1.8; color: #4A4A6A; margin-bottom: 1.5rem; }
+    
+    .schedule-box {
+      background: #F7F5F0;
+      border: 1px solid #DDDDE8;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .schedule-row {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #E5E2D8;
+    }
+    .schedule-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .schedule-time {
+      font-weight: 700;
+      color: #1A2744;
+      font-size: 0.9rem;
+      min-width: 100px;
+    }
+    .schedule-desc h4 { font-size: 1rem; color: #1A2744; margin-bottom: 4px; }
+    .schedule-desc p { font-size: 0.85rem; color: #6A6A8A; margin: 0; }
+
+    /* RSVP & Procurement Sidebar */
+    .event-sidebar-card {
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(26,39,68,0.06);
+      position: sticky;
+      top: 90px;
+      margin-bottom: 2rem;
+    }
+    .sidebar-price-tag {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1A2744;
+      margin-bottom: 1rem;
+    }
+    .event-benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .event-benefit-list li {
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #4A4A6A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Featured Product Drop from this Event */
+    .featured-expo-product {
+      background: #F7F5F0;
+      border: 1px solid #DDDDE8;
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    .featured-expo-product img {
+      width: 70px;
+      height: 70px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      .event-hero-grid, .event-content-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="padding-top:1rem;">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> > <a href="index.html#kolkata-events">Events</a> > State Handicrafts Expo 2026
+  </div>
+</div>
+
+<!-- EVENT HERO -->
+<header class="event-hero">
+  <div class="container event-hero-grid">
+    <div>
+      <span class="event-tag-pill">🎪 Official Trade Expo</span>
+      <h1>West Bengal State Handicrafts & Terracotta Expo 2026</h1>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,0.8);line-height:1.7;">Eastern India's premier B2B and institutional gathering for authentic clay craft traditions, live artisan pottery demonstrations, and bulk festival sourcing.</p>
+      
+      <div class="event-meta-bar">
+        <div class="meta-item">
+          <span class="meta-icon">🗓️</span>
+          <span><strong>August 28 – September 5, 2026</strong></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">📍</span>
+          <span><strong>Biswa Bangla Mela Prangan (Milan Mela), Kolkata</strong></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">⏰</span>
+          <span><strong>11:00 AM – 8:30 PM Daily</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="event-poster-card">
+      <img src="images/bengal_fair.jpg" alt="Biswa Bangla Mela Prangan Handicrafts Expo">
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="container event-content-layout">
+  <article class="event-article">
+    <h2>About the Expo</h2>
+    <p>Organized in partnership with the West Bengal State Handicrafts Development Corporation, the 2026 edition of the State Terracotta Expo brings over 60 verified master sculptors and Self-Help Group (SHG) cooperatives directly from the heartlands of Panchmura (Bankura) and Ghurni (Krishnanagar).</p>
+    
+    <p>For corporate gifting procurement officers, hotel architects, and art institutions, the expo features exclusive B2B networking pavilions with on-spot sample evaluations, custom branding consultation, and wholesale contract finalization with zero middlemen markups.</p>
+
+    <h2>Live Demonstrations & Highlights</h2>
+    <p>Witness the centuries-old traditional four-piece wheel throwing process used to sculpt the world-famous Bankura terracotta horses. Master artisan Ranjit Kumar Das and Krishnanagar clay doll specialist Kamala Devi will be conducting masterclasses on natural river silt preparation, non-toxic pigment formulation, and open wood-kiln firing techniques.</p>
+
+    <div class="schedule-box">
+      <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;color:#1A2744;">Featured Daily Schedule</h3>
+      
+      <div class="schedule-row">
+        <div class="schedule-time">12:00 PM</div>
+        <div class="schedule-desc">
+          <h4>Live Panchmura Horse Throwing</h4>
+          <p>Demonstration of modular hollow clay sculpting on traditional manual wheels.</p>
+        </div>
+      </div>
+
+      <div class="schedule-row">
+        <div class="schedule-time">03:30 PM</div>
+        <div class="schedule-desc">
+          <h4>B2B Procurement & Custom Sample Desk</h4>
+          <p>One-on-one sessions for corporate gifting managers, interior designers, and hotel buyers.</p>
+        </div>
+      </div>
+
+      <div class="schedule-row">
+        <div class="schedule-time">06:00 PM</div>
+        <div class="schedule-desc">
+          <h4>Krishnanagar Miniature Painting Workshop</h4>
+          <p>Live hand-painting session showcasing 400-year-old realistic folk doll detailing.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Institutional Procurement Support</h2>
+    <p>CraftCapital representatives will be stationed at Hall 3, Desk 14, to assist enterprise buyers with consolidated GST invoicing, laboratory breakage testing reports, custom logo embossing, and Pan-India logistics coordination.</p>
+
+    <!-- Social Commerce Featured Product -->
+    <div style="margin-top:2.5rem;">
+      <h3 style="font-family:'Playfair Display',serif;color:#1A2744;margin-bottom:.75rem;">Featured Product from this Expo</h3>
+      <div class="featured-expo-product">
+        <img src="images/panchmura_horse.jpg" alt="Panchmura Terracotta Horse">
+        <div style="flex:1;">
+          <h4 style="margin:0 0 4px;font-size:1rem;color:#1A2744;">Signature Large Panchmura Terracotta Horse</h4>
+          <div style="font-weight:700;color:#C28B00;font-size:.9rem;">₹2,400 / pc &nbsp;·&nbsp; MOQ 5 pcs</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="cartManager.addItem({id:'prod-1',name:'Panchmura Horse — Signature Large',price:2400,image:'images/panchmura_horse.jpg'}, 5)">Pre-Order Batch 🛒</button>
+      </div>
+    </div>
+  </article>
+
+  <!-- SIDEBAR: RSVP & PASS -->
+  <aside>
+    <div class="event-sidebar-card">
+      <div class="sidebar-price-tag">Free Entry for B2B Buyers</div>
+      <p style="font-size:.85rem;color:#4A4A6A;">Register your institutional pass to get fast-track entry, complimentary sample catalog, and priority artisan consultation.</p>
+
+      <ul class="event-benefit-list">
+        <li>✓ Fast-track entry to B2B Sourcing Pavilion</li>
+        <li>✓ Complimentary 2026 Terracotta Catalog</li>
+        <li>✓ 1-on-1 meeting with Master Artisans</li>
+        <li>✓ GST Invoice & Logistics consultation</li>
+      </ul>
+
+      <form onsubmit="event.preventDefault(); alert('Thank you! Your institutional pass has been registered. Check your email for details.');">
+        <input type="text" class="form-control" placeholder="Your Full Name" required style="margin-bottom:.75rem;padding:.65rem;border:1px solid #DDDDE8;border-radius:6px;width:100%;box-sizing:border-box;">
+        <input type="email" class="form-control" placeholder="Work Email" required style="margin-bottom:.75rem;padding:.65rem;border:1px solid #DDDDE8;border-radius:6px;width:100%;box-sizing:border-box;">
+        <input type="text" class="form-control" placeholder="Company / Hotel / Organization" required style="margin-bottom:1rem;padding:.65rem;border:1px solid #DDDDE8;border-radius:6px;width:100%;box-sizing:border-box;">
+        <button type="submit" class="btn btn-yellow btn-block">Register Institutional Pass</button>
+      </form>
+
+      <div style="margin-top:1.5rem;text-align:center;">
+        <a href="contact.html" style="font-size:.8rem;color:#1A2744;text-decoration:underline;">Need custom batch samples? Contact Us →</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans directly with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal · India</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li></ul>
+      </div>
+      <div>
+        <h4>Craft Weekly</h4>
+        <ul><li><a href="index.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

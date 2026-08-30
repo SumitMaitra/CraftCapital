@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | CraftCapital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F5F0; color: #1A1A2E; margin: 0; padding: 0; }
+        h1, h2, h3, h4, h5, h6, .logo { font-family: 'Playfair Display', Georgia, serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Navbar */
+        .navbar { background: #FFFFFF; box-shadow: 0 2px 12px rgba(26,39,68,0.08); padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: #1A2744; }
+        .logo span { color: #243358; }
+        .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+        .nav-links a:hover { color: #1A2744; }
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+        .btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: #1A2744; color: #FFFFFF; border: none; }
+        .btn-sm { padding: 8px 16px; font-size: 14px; }
+        
+        /* Hero */
+        .page-hero { background: #243358; color: #FFF; padding: 60px 0; text-align: center; }
+        .page-hero h1 { font-size: 40px; margin: 0; color: #F5C518; }
+        
+        /* Content Sections */
+        .section { padding: 60px 0; }
+        .section h2 { color: #1A2744; font-size: 32px; margin-bottom: 20px; }
+        .section p { font-size: 16px; line-height: 1.8; color: #4A3326; margin-bottom: 20px; }
+        
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        
+        /* Team */
+        .team-member { background: #FFF; border: 1px solid #DDDDE8; padding: 30px; border-radius: 8px; text-align: center; }
+        .team-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 3px solid #F5C518; box-shadow: 0 4px 14px rgba(26,39,68,0.12); }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* Clusters */
+        .cluster-card { background: #FFF; border-left: 4px solid #1A2744; padding: 30px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(26,39,68,0.05); }
+        .cluster-card h3 { color: #243358; margin-top: 0; }
+        
+        /* Roadmap */
+        .roadmap-timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; border-left: 2px solid #F5C518; }
+        .roadmap-item { margin-bottom: 40px; position: relative; }
+        .roadmap-item::before { content: ''; position: absolute; left: -39px; top: 0; width: 16px; height: 16px; background: #1A2744; border-radius: 50%; border: 4px solid #F7F5F0; }
+        .roadmap-item h4 { margin: 0 0 10px; color: #243358; font-family: 'Inter', sans-serif; }
+        
+        /* Footer */
+        .footer { background: #FFFFFF; border-top: 1px solid #DDDDE8; padding: 60px 0 30px; margin-top: 40px;}
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer h3 { color: #1A2744; font-size: 24px; margin-bottom: 15px; }
+        .footer h4 { color: #243358; margin-bottom: 20px; }
+        .footer p, .footer a { color: #4A4A6A; font-size: 14px; }
+        .footer ul { list-style: none; padding: 0; margin: 0; }
+        .footer ul li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+    <div class="container">
+        <h1>About CraftCapital</h1>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="grid-2">
+            <div>
+                <h2>Our Mission</h2>
+                <p>CraftCapital is a verified B2B marketplace dedicated to connecting West Bengal's rich terracotta and clay-craft artisan clusters directly with institutional buyers. Our mission is to eliminate middlemen, ensure fair pricing for artisans, and provide a seamless, reliable procurement experience for businesses.</p>
+                <p>We are currently focused on empowering the master craftspeople of Panchmura and Krishnanagar.</p>
+            </div>
+            <div style="background: #DDDDE8; height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 60px;">🤝</div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: #FFFFFF;">
+    <div class="container">
+        <h2>The Problem We Solve</h2>
+        <p>Institutional buyers (corporate gifting, hotels, retailers) want authentic crafts, but sourcing is fragmented. Existing channels fall short:</p>
+        <ul>
+            <li><strong>Amazon Karigar & B2C Platforms:</strong> Focused on single-unit retail, lacking B2B infrastructure like bulk negotiation, custom sampling, and proper GST invoicing.</li>
+            <li><strong>Instagram / Direct Outreach:</strong> Highly unreliable communication, trust deficits, and zero logistics support for large orders.</li>
+            <li><strong>Government Emporiums (e.g., Biswa Bangla):</strong> High markups, rigid catalog options, and lack of direct connection with the artisan.</li>
+        </ul>
+        <p><strong>Our Approach:</strong> We offer curated discovery, dedicated B2B procurement assistance, and industry insights through our Kolkata Craft Weekly digest.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="grid-2">
+            <div>
+                <h2>The Team</h2>
+                <div class="team-member">
+                    <div class="team-img"><img src="images/artisan_prabir.jpg" alt="Aditya Sen, Founder & CEO"></div>
+                    <h3>Aditya Sen</h3>
+                    <p><strong>Founder & CEO</strong></p>
+                    <p style="font-size: 14px;">A software developer turned social entrepreneur. Aditya identified the massive gap between the incredible artistry in rural Bengal and the procurement needs of modern enterprises. CraftCapital was born to bridge that gap with technology and empathy.</p>
+                </div>
+            </div>
+            <div>
+                <h2>Our Artisan Clusters</h2>
+                <div class="cluster-card">
+                    <h3>📍 Panchmura (Bankura)</h3>
+                    <p>Famous for the iconic Bankura Horse and robust terracotta artifacts. Panchmura crafts represent the rustic, earthy heritage of Bengal, characterized by their deep reddish hues and intricate details.</p>
+                </div>
+                <div class="cluster-card">
+                    <h3>📍 Krishnanagar (Nadia)</h3>
+                    <p>Renowned for its incredibly lifelike clay dolls and miniature figurines. The artisans of Ghurni, Krishnanagar, possess an uncanny ability to capture human expressions and everyday scenes in clay.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: #FFFFFF;">
+    <div class="container">
+        <h2 style="text-align: center;">Our Journey & Roadmap</h2>
+        <div class="roadmap-timeline">
+            <div class="roadmap-item">
+                <h4>Year 1: Kolkata Pilot</h4>
+                <p>Onboarding the top 100 artisans from Panchmura and Krishnanagar. Partnering with 50 local institutional buyers in Kolkata to refine the procurement workflow.</p>
+            </div>
+            <div class="roadmap-item">
+                <h4>Year 2: National Expansion</h4>
+                <p>Expanding buyer reach across major Indian metros. Introducing 3 new artisan clusters from West Bengal, including Dokra and Sholapith crafts.</p>
+            </div>
+            <div class="roadmap-item">
+                <h4>Year 3: Eastern India Hub</h4>
+                <p>Scaling the platform to include heritage crafts from Odisha, Bihar, and Assam, establishing CraftCapital as the premier B2B hub for Eastern Indian artistry.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="cart.html">My Cart</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js" defer></script>`n  <script src="js/main.js"></script>
+</body>
+</html>
+
+

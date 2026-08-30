@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kolkata Craft Weekly — West Bengal's Terracotta & Clay Craft Digest | CraftCapital</title>
+  <meta name="description" content="Kolkata Craft Weekly: Curated stories, Kolkata craft events, cluster news, and verified terracotta product drops from Panchmura and Krishnanagar artisans.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    /* ============================================================
+       HOMEPAGE SPECIFIC STYLES — SOCIAL COMMERCE & EDITORIAL
+       ============================================================ */
+
+    /* Top info ribbon */
+    .topbar {
+      background: #F0EEE8;
+      border-bottom: 1px solid #DDDDE8;
+      padding: .4rem 1.5rem;
+      font-size: .8rem;
+      color: #4A4A6A;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Hero Digest Masthead */
+    .hero-wrap {
+      background: #F7F5F0;
+      border-bottom: 1px solid #DDDDE8;
+      padding: 2.5rem 0 2rem;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .hero-text .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #1A2744;
+      background: #E8E5DC;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: .9rem;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+      line-height: 1.08;
+      color: #1A2744;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-text h1 span {
+      color: #C28B00;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .hero-text .tagline {
+      font-size: 1rem;
+      color: #4A4A6A;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .hero-quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid #E2DFD6;
+    }
+    .quick-pill {
+      font-size: .75rem;
+      font-weight: 600;
+      color: #1A2744;
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      padding: 4px 10px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .quick-pill:hover {
+      background: #1A2744;
+      color: #F5C518;
+      border-color: #1A2744;
+      transform: translateY(-1px);
+    }
+    .hero-art-card {
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(26,39,68,.08);
+      position: relative;
+    }
+    .hero-art-img-wrap {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      background: #E8E5DC;
+    }
+    .hero-art-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .hero-art-card:hover .hero-art-img-wrap img {
+      transform: scale(1.03);
+    }
+    .hero-art-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(26,39,68,0.92);
+      color: #F5C518;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+    .hero-art-caption {
+      padding: 1rem 1.25rem;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .hero-art-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.3;
+    }
+    .hero-art-sub {
+      font-size: .75rem;
+      color: #7A7A9A;
+      margin-top: 2px;
+    }
+
+    /* Issue stripe */
+    .issue-stripe {
+      background: #1A2744;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem 1.5rem;
+      font-size: .82rem;
+    }
+    .issue-stripe .left { display: flex; align-items: center; gap: .6rem; }
+    .issue-stripe .right { color: #F5C518; font-weight: 700; }
+
+    /* Section header (newspaper-style) */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #1A2744;
+      padding-bottom: .6rem;
+      margin-bottom: 1.5rem;
+    }
+    .sec-head-title {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: #1A2744;
+    }
+    .sec-head-link {
+      font-size: .8rem;
+      font-weight: 600;
+      color: #1A2744;
+      text-decoration: underline;
+    }
+
+    /* Events Section */
+    .events-section { padding: 3rem 0; background: #fff; }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .event-card {
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(26,39,68,.12);
+    }
+    .event-img {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: #1A2744;
+    }
+    .event-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .event-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #1A2744;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .event-date-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.92);
+      color: #1A2744;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .event-body {
+      padding: 1.15rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-location {
+      font-size: .7rem;
+      font-weight: 700;
+      color: #C28B00;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .3rem;
+    }
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.35;
+      margin-bottom: .5rem;
+    }
+    .event-desc {
+      font-size: .8rem;
+      color: #4A4A6A;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    /* Social commerce product link inside event */
+    .event-product-tag {
+      background: #F7F5F0;
+      border: 1px solid #EDEAE3;
+      border-radius: 6px;
+      padding: .65rem .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      margin-top: auto;
+    }
+    .event-product-info {
+      font-size: .75rem;
+      color: #1A2744;
+      font-weight: 600;
+    }
+    .event-product-info span {
+      display: block;
+      font-size: .68rem;
+      color: #7A7A9A;
+      font-weight: 400;
+    }
+    .event-shop-btn {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #1A2744;
+      background: #F5C518;
+      padding: 4px 9px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .event-shop-btn:hover {
+      background: #E0B000;
+    }
+
+    /* Artisan Stories Section */
+    .artisan-stories { padding: 3rem 0; background: #F7F5F0; }
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .story-card {
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(26,39,68,.06);
+      display: flex;
+      flex-direction: column;
+    }
+    .story-img-wrap {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: #1A2744;
+    }
+    .story-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .story-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #1A2744;
+      color: #F5C518;
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .story-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .story-meta {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .72rem;
+      color: #7A7A9A;
+      margin-bottom: .4rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.3;
+      margin-bottom: .75rem;
+    }
+    .story-quote {
+      font-style: italic;
+      font-size: .86rem;
+      color: #2E3E64;
+      border-left: 3px solid #F5C518;
+      padding-left: .85rem;
+      margin-bottom: .9rem;
+      line-height: 1.5;
+    }
+    .story-excerpt {
+      font-size: .82rem;
+      color: #4A4A6A;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    /* Social Commerce Buy Box inside Artisan Story */
+    .story-commerce-box {
+      background: #F7F5F0;
+      border: 1px solid #E5E2D8;
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: auto;
+    }
+    .story-product-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .story-commerce-details {
+      flex: 1;
+    }
+    .story-prod-title {
+      font-size: .8rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.2;
+    }
+    .story-prod-price {
+      font-size: .75rem;
+      color: #C28B00;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .story-buy-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      align-items: flex-end;
+    }
+
+    /* Cluster News & Live Opportunities */
+    .news-opp-section { padding: 3rem 0; background: #fff; }
+    .news-opp-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .panel-box {
+      background: #F7F5F0;
+      border: 1px solid #DDDDE8;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .news-card-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid #E5E2D8;
+    }
+    .news-card-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-thumb-img {
+      width: 80px;
+      height: 65px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .news-card-body { flex: 1; }
+    .news-tag-mini {
+      font-size: .65rem;
+      font-weight: 700;
+      color: #C28B00;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 2px;
+    }
+    .news-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .news-card-desc {
+      font-size: .78rem;
+      color: #4A4A6A;
+      line-height: 1.45;
+      margin-bottom: 4px;
+    }
+    .news-commerce-link {
+      font-size: .74rem;
+      font-weight: 700;
+      color: #1A2744;
+      text-decoration: underline;
+      display: inline-block;
+    }
+    .news-commerce-link:hover { color: #C28B00; }
+
+    /* Live Sourcing Opportunities */
+    .opp-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .95rem;
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 8px;
+      margin-bottom: .75rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .opp-item-row:hover {
+      border-color: #1A2744;
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(26,39,68,.08);
+    }
+    .opp-item-title {
+      font-weight: 700;
+      font-size: .88rem;
+      color: #1A2744;
+      margin-bottom: 2px;
+    }
+    .opp-item-meta {
+      font-size: .75rem;
+      color: #7A7A9A;
+    }
+    .opp-item-price {
+      font-size: .82rem;
+      font-weight: 700;
+      color: #1A2744;
+      text-align: right;
+    }
+    .opp-item-price span {
+      display: block;
+      font-size: .68rem;
+      font-weight: 400;
+      color: #7A7A9A;
+    }
+
+    /* Success Stories & Impact Metrics */
+    .impact-section { padding: 3rem 0; background: #1A2744; color: #fff; }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .impact-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .impact-client {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #F5C518;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .4rem;
+    }
+    .impact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: .6rem;
+    }
+    .impact-desc {
+      font-size: .82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .impact-stat-pill {
+      background: rgba(245,197,24,0.15);
+      border: 1px solid rgba(245,197,24,0.3);
+      color: #F5C518;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .impact-counter-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      text-align: center;
+    }
+    .counter-item .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #F5C518;
+      display: block;
+    }
+    .counter-item .label {
+      font-size: .78rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-top: 2px;
+    }
+
+    /* Product Drops Section (Bottom Marketplace Showcase) */
+    .products-bottom-section { padding: 3.5rem 0 2.5rem; background: #F7F5F0; }
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .pick-card {
+      border: 1px solid #DDDDE8;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .pick-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(26,39,68,.14);
+    }
+    .pick-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+      background: #E8E5DC;
+    }
+    .pick-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .pick-card:hover .pick-img img { transform: scale(1.06); }
+    .pick-cat {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(255,255,255,.94);
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #1A2744;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .pick-body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pick-type {
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #C28B00;
+      margin-bottom: .25rem;
+    }
+    .pick-name {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.3;
+      margin-bottom: .35rem;
+    }
+    .pick-desc {
+      font-size: .78rem;
+      color: #4A4A6A;
+      line-height: 1.5;
+      margin-bottom: .75rem;
+      flex: 1;
+    }
+    .pick-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .74rem;
+      color: #7A7A9A;
+      margin-bottom: .75rem;
+    }
+    .pick-footer-actions {
+      padding: .75rem 1rem;
+      border-top: 1px solid #EDEAE3;
+      background: #FAF9F6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pick-price {
+      font-weight: 700;
+      color: #1A2744;
+      font-size: .95rem;
+    }
+    .pick-price span {
+      display: block;
+      font-size: .7rem;
+      font-weight: 400;
+      color: #7A7A9A;
+    }
+    .pick-add-btn {
+      background: #1A2744;
+      color: #fff;
+      border: none;
+      padding: .45rem .85rem;
+      border-radius: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background .2s;
+    }
+    .pick-add-btn:hover {
+      background: #F5C518;
+      color: #1A2744;
+    }
+
+    /* Past issues */
+    .past-issues-section { padding: 2.5rem 0; background: #fff; }
+    .past-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .past-card {
+      background: #fff;
+      border: 1px solid #DDDDE8;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .past-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(26,39,68,.12);
+    }
+    .past-img-box {
+      height: 110px;
+      overflow: hidden;
+      position: relative;
+      background: #1A2744;
+    }
+    .past-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .past-badge-tag {
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      color: #F5C518;
+      font-size: .75rem;
+      font-weight: 700;
+      background: rgba(0,0,0,.6);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .past-card-body { padding: .85rem; }
+    .past-date {
+      font-size: .7rem;
+      color: #7A7A9A;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .25rem;
+    }
+    .past-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.3;
+    }
+
+    /* Marketplace CTA strip */
+    .market-cta { background: #F7F5F0; padding: 2.5rem 0; }
+    .market-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      background: linear-gradient(135deg, #1A2744 0%, #243358 100%);
+      border-radius: 12px;
+      padding: 2.25rem 2.5rem;
+      color: #fff;
+    }
+    .market-cta-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: .4rem;
+    }
+    .market-cta-text p { color: rgba(255,255,255,.75); font-size: .9rem; margin: 0; }
+    .market-cta-btns { display: flex; gap: .75rem; flex-shrink: 0; }
+
+    /* Subscribe footer bar */
+    .sub-bar { background: #1A2744; padding: 2rem 0; }
+    .sub-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .sub-text h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 4px; }
+    .sub-text p { color: rgba(255,255,255,.7); font-size: .85rem; margin: 0; }
+    .sub-form { display: flex; gap: .5rem; flex-shrink: 0; }
+    .sub-input {
+      padding: .65rem 1.1rem;
+      border: 2px solid rgba(255,255,255,.2);
+      border-radius: 6px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .9rem;
+      width: 250px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .sub-input::placeholder { color: rgba(255,255,255,.45); }
+    .sub-input:focus { border-color: #F5C518; }
+    .sub-btn {
+      background: #F5C518;
+      color: #1A2744;
+      border: none;
+      border-radius: 6px;
+      padding: .65rem 1.25rem;
+      font-weight: 700;
+      font-size: .9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .sub-btn:hover { background: #E0B000; }
+
+    /* Social bar */
+    .social-bar {
+      background: #111C36;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: .85rem 0;
+    }
+    .social-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .social-links { display: flex; align-items: center; gap: .5rem; }
+    .social-links span { font-size: .78rem; color: rgba(255,255,255,.5); margin-right: .5rem; }
+    .soc-a {
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.8);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      transition: background .2s;
+    }
+    .soc-a:hover { background: #F5C518; color: #1A2744; }
+    .share-link {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      cursor: pointer;
+    }
+    .share-link:hover { color: #F5C518; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .events-grid, .impact-grid { grid-template-columns: 1fr 1fr; }
+      .picks-grid { grid-template-columns: 1fr 1fr; }
+      .impact-counter-bar { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art-card { order: -1; }
+      .stories-grid, .news-opp-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .events-grid, .impact-grid, .past-grid { grid-template-columns: 1fr; }
+      .picks-grid { grid-template-columns: 1fr; }
+      .sub-bar-inner, .market-cta-inner { flex-direction: column; align-items: flex-start; }
+      .sub-form, .market-cta-btns { width: 100%; flex-direction: column; }
+      .sub-input { width: 100%; }
+      .social-inner { flex-direction: column; gap: .75rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Your weekly guide to West Bengal's terracotta crafts &nbsp;·&nbsp; Direct Artisan Payouts &nbsp;·&nbsp; Institutional Sourcing</span>
+  <a href="marketplace.html" style="color:#1A2744;font-weight:600;">View in Marketplace →</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="digest-archive.html">Archive</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO: KOLKATA CRAFT WEEKLY -->
+<div class="hero-wrap">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="kicker">📰 Issue #12 &nbsp;·&nbsp; August 25–31, 2026 &nbsp;·&nbsp; Cluster Dispatch</span>
+      <h1>Kolkata Craft<br><span>Weekly</span></h1>
+      <p class="tagline">The digital dispatch connecting Kolkata institutions, hotels, and corporate buyers directly with the master terracotta artisans of Panchmura & Krishnanagar. Explore city craft events, read untold artisan journeys, and procure verified heritage crafts.</p>
+      <div style="display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap;">
+        <a href="#kolkata-events" class="btn btn-primary btn-lg">Explore Kolkata Events</a>
+        <a href="#artisan-stories" class="btn btn-outline btn-lg">Read Artisan Stories</a>
+      </div>
+
+      <!-- Quick Section Jump Pills -->
+      <div class="hero-quick-nav">
+        <a href="#kolkata-events" class="quick-pill">🎪 Kolkata Events</a>
+        <a href="#artisan-stories" class="quick-pill">👩‍🎨 Artisan Journeys</a>
+        <a href="#cluster-news" class="quick-pill">📰 Cluster News</a>
+        <a href="#success-stories" class="quick-pill">📈 Success Stories</a>
+        <a href="#weekly-drops" class="quick-pill">🏺 Weekly Product Drops</a>
+      </div>
+    </div>
+
+    <!-- Hero Art Cover Card -->
+    <div class="hero-art-card">
+      <div class="hero-art-img-wrap">
+        <img src="images/panchmura_horse.jpg" alt="Cover Story: GI-Tagged Panchmura Terracotta Horse" loading="eager">
+        <span class="hero-art-badge">Cover Feature · Issue #12</span>
+      </div>
+      <div class="hero-art-caption">
+        <div>
+          <div class="hero-art-title">Panchmura Horse: Heritage in Red Clay</div>
+          <div class="hero-art-sub">📍 Panchmura, Bankura · By Ranjit Kumar Das</div>
+        </div>
+        <a href="product.html" class="btn btn-yellow btn-sm">Shop Piece</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ISSUE META STRIPE -->
+<div class="issue-stripe">
+  <div class="left">📅 &nbsp;Issue #12 &nbsp;·&nbsp; Published Every Monday &nbsp;·&nbsp; Free for Institutional Buyers</div>
+  <div class="right">West Bengal Artisan Network</div>
+</div>
+
+<!-- SECTION 1: HAPPENING IN KOLKATA (EVENTS & CRAFT EXHIBITIONS) -->
+<section class="events-section" id="kolkata-events">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-title">
+        <span>🎪</span>
+        <span>Happening in Kolkata & Bengal (Events & Craft Fairs)</span>
+      </div>
+      <a href="digest-issue.html" class="sec-head-link">View Event Calendar →</a>
+    </div>
+
+    <div class="events-grid">
+
+      <!-- Event 1 -->
+      <div class="event-card">
+        <div class="event-img">
+          <a href="event-milan-mela.html"><img src="images/bengal_fair.jpg" alt="Biswa Bangla Mela Prangan Handicrafts Expo"></a>
+          <span class="event-badge">Trade Expo</span>
+          <span class="event-date-tag">🗓️ Aug 28 – Sep 5, 2026</span>
+        </div>
+        <div class="event-body">
+          <div class="event-location">📍 Biswa Bangla Mela Prangan (Milan Mela), Kolkata</div>
+          <h3 class="event-title"><a href="event-milan-mela.html" style="color:inherit;text-decoration:none;">West Bengal State Handicrafts & Terracotta Expo 2026</a></h3>
+          <p class="event-desc">Live potter's wheel demonstrations by 40+ Bankura artisans, dedicated institutional procurement desks, and curated corporate Diwali gifting pavilions.</p>
+          
+          <!-- Social Commerce Link -->
+          <div class="event-product-tag">
+            <div class="event-product-info">
+              Featured: Panchmura Horse
+              <span>₹2,400 / pc · MOQ 5</span>
+            </div>
+            <div style="display:flex;gap:4px;">
+              <a href="event-milan-mela.html" class="btn btn-outline btn-sm" style="font-size:.7rem;padding:3px 7px;">Event Details</a>
+              <a href="product.html" class="event-shop-btn">Pre-Order →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <div class="event-img">
+          <a href="event-academy-arts.html"><img src="images/clay_figurines.jpg" alt="Krishnanagar Clay Doll Heritage Fair at Academy of Fine Arts"></a>
+          <span class="event-badge">Art Exhibition</span>
+          <span class="event-date-tag">🗓️ Sep 2 – Sep 8, 2026</span>
+        </div>
+        <div class="event-body">
+          <div class="event-location">📍 Academy of Fine Arts, Cathedral Road, Kolkata</div>
+          <h3 class="event-title"><a href="event-academy-arts.html" style="color:inherit;text-decoration:none;">'Mitti Ka Roop' Krishnanagar Clay Doll Showcase</a></h3>
+          <p class="event-desc">Exhibition celebrating 400 years of Ghurni miniature clay sculpting. Meet master artisans and explore realistic rural Bengal life dioramas handcrafted for art collectors.</p>
+          
+          <!-- Social Commerce Link -->
+          <div class="event-product-tag">
+            <div class="event-product-info">
+              Featured: 12-Pc Clay Figurine Set
+              <span>₹1,200 / set · MOQ 10</span>
+            </div>
+            <div style="display:flex;gap:4px;">
+              <a href="event-academy-arts.html" class="btn btn-outline btn-sm" style="font-size:.7rem;padding:3px 7px;">Event Details</a>
+              <a href="product.html" class="event-shop-btn">Explore Batch →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <div class="event-img">
+          <a href="event-dakshinapan.html"><img src="images/terracotta_planters.jpg" alt="Dakshinapan Eco-Hospitality Craft Showcase"></a>
+          <span class="event-badge">B2B Meetup</span>
+          <span class="event-date-tag">🗓️ Every Saturday & Sunday</span>
+        </div>
+        <div class="event-body">
+          <div class="event-location">📍 Dakshinapan & Biswa Bangla Haat, Rajarhat</div>
+          <h3 class="event-title"><a href="event-dakshinapan.html" style="color:inherit;text-decoration:none;">Terracotta Décor & Eco-Hospitality Sourcing Meet</a></h3>
+          <p class="event-desc">Curated sampling meet for interior designers, architects, and hotel procurement managers seeking sustainable, unglazed clay planters and custom wall installations.</p>
+          
+          <!-- Social Commerce Link -->
+          <div class="event-product-tag">
+            <div class="event-product-info">
+              Featured: 3-Pc Terracotta Planter Set
+              <span>₹680 / set · MOQ 20</span>
+            </div>
+            <div style="display:flex;gap:4px;">
+              <a href="event-dakshinapan.html" class="btn btn-outline btn-sm" style="font-size:.7rem;padding:3px 7px;">Event Details</a>
+              <a href="product.html" class="event-shop-btn">Order Samples →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ARTISAN STORIES & SPOTLIGHTS (MEET THE MAKERS) -->
+<section class="artisan-stories" id="artisan-stories">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-title">
+        <span>👩‍🎨</span>
+        <span>Artisan Stories: Meet the Hands Behind Bengal Clay</span>
+      </div>
+      <a href="artisans.html" class="sec-head-link">View All 80+ Verified Artisans →</a>
+    </div>
+
+    <div class="stories-grid">
+
+      <!-- Story 1: Ranjit Kumar Das -->
+      <div class="story-card">
+        <div class="story-img-wrap">
+          <a href="artisan-profile.html"><img src="images/artisan_hands.jpg" alt="Ranjit Kumar Das shaping Panchmura terracotta on the wheel"></a>
+          <span class="story-badge">Master Artisan · Bankura</span>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <span>🏺 Panchmura, Bankura</span>
+            <span>·</span>
+            <span>3rd Generation Craftsman</span>
+          </div>
+          <h3 class="story-title"><a href="artisan-profile.html" style="color:inherit;text-decoration:none;">Ranjit Kumar Das: 30 Years of the Sacred Panchmura Horse</a></h3>
+          <div class="story-quote">"Every horse is thrown in four hollow parts — neck, body, ears, and legs — then joined by hand before being sun-dried and fired in wood kilns. No two pieces are ever identical."</div>
+          <p class="story-excerpt">Ranjit's family has preserved the GI-tagged Panchmura craft technique for nearly a century. With CraftCapital, his SHG cooperative now ships directly to luxury hotels and corporate clients across India without intermediary markups.</p>
+          
+          <!-- Social Commerce Integrated Buy Box -->
+          <div class="story-commerce-box">
+            <img src="images/panchmura_horse.jpg" alt="Ranjit's Panchmura Horse" class="story-product-thumb">
+            <div class="story-commerce-details">
+              <div class="story-prod-title">Ranjit's Signature Panchmura Horse (Large)</div>
+              <div class="story-prod-price">₹2,400 / pc &nbsp;·&nbsp; MOQ 5 pcs</div>
+            </div>
+            <div class="story-buy-actions">
+              <button class="btn btn-sm btn-primary" onclick="cartManager.addItem({id:'prod-1',name:'Panchmura Horse — Signature Large',price:2400,image:'images/panchmura_horse.jpg'}, 5)">+ Add 5 to Cart 🛒</button>
+              <a href="artisan-profile.html" style="font-size:.72rem;color:#1A2744;text-decoration:underline;">Read Full Story →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2: Kamala Devi -->
+      <div class="story-card">
+        <div class="story-img-wrap">
+          <a href="story-kamala-devi.html"><img src="images/pottery_wheel.jpg" alt="Kamala Devi workshop in Krishnanagar"></a>
+          <span class="story-badge">Award Winner · Nadia</span>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <span>🎨 Ghurni, Krishnanagar</span>
+            <span>·</span>
+            <span>SHG Lead (28 Artisans)</span>
+          </div>
+          <h3 class="story-title"><a href="story-kamala-devi.html" style="color:inherit;text-decoration:none;">Kamala Devi: Reviving 400-Year-Old Ghurni Clay Realism</a></h3>
+          <div class="story-quote">"We harvest fine alluvial silt from the Jalangi river bed. It allows us to capture the delicate folds of a saree and realistic facial expressions on our miniature figurines."</div>
+          <p class="story-excerpt">Kamala leads a cooperative of 28 women sculptors in Krishnanagar. Her recent line of minimalist unglazed planters and festival sets combines modern architectural aesthetics with ancient river-clay durability.</p>
+          
+          <!-- Social Commerce Integrated Buy Box -->
+          <div class="story-commerce-box">
+            <img src="images/terracotta_planters.jpg" alt="Kamala's Planters" class="story-product-thumb">
+            <div class="story-commerce-details">
+              <div class="story-prod-title">Minimalist Terracotta Planter Set (3-Piece)</div>
+              <div class="story-prod-price">₹680 / set &nbsp;·&nbsp; MOQ 20 sets</div>
+            </div>
+            <div class="story-buy-actions">
+              <button class="btn btn-sm btn-primary" onclick="cartManager.addItem({id:'prod-3',name:'Terracotta Planter Set (3-piece)',price:680,image:'images/terracotta_planters.jpg'}, 20)">+ Add 20 to Cart 🛒</button>
+              <a href="story-kamala-devi.html" style="font-size:.72rem;color:#1A2744;text-decoration:underline;">Read Full Story →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: CLUSTER NEWS & LIVE BULK OPPORTUNITIES -->
+<section class="news-opp-section" id="cluster-news">
+  <div class="container">
+    <div class="news-opp-grid">
+
+      <!-- Left: Cluster News Digest -->
+      <div class="panel-box">
+        <div class="sec-head" style="border-bottom-color:#1A2744;margin-bottom:1rem;">
+          <div class="sec-head-title">
+            <span>📰</span>
+            <span>What's New in Bengal Craft Clusters</span>
+          </div>
+          <a href="digest-archive.html" class="sec-head-link">Read Full Archive →</a>
+        </div>
+
+        <!-- News Item 1 -->
+        <div class="news-card-item">
+          <a href="news-sfurti-solar.html"><img src="images/terracotta_market.jpg" alt="Bankura Cluster Facility" class="news-thumb-img"></a>
+          <div class="news-card-body">
+            <div class="news-tag-mini">Infrastructure Upgrade</div>
+            <h4 class="news-card-title"><a href="news-sfurti-solar.html" style="color:inherit;text-decoration:none;">SFURTI Common Facility Centre in Bankura Goes Solar</a></h4>
+            <p class="news-card-desc">180 potter families gain access to temperature-controlled kilns, cutting monsoon drying losses by 40%.</p>
+            <a href="news-sfurti-solar.html" class="news-commerce-link">Read Full News Article →</a>
+          </div>
+        </div>
+
+        <!-- News Item 2 -->
+        <div class="news-card-item">
+          <a href="news-diwali-preorder.html"><img src="images/clay_lamp_diya.jpg" alt="Diwali Terracotta Diya Collection" class="news-thumb-img"></a>
+          <div class="news-card-body">
+            <div class="news-tag-mini">Pre-Order Drop</div>
+            <h4 class="news-card-title"><a href="news-diwali-preorder.html" style="color:inherit;text-decoration:none;">Diwali 2026 Institutional Gifting Pre-Booking Opens Early</a></h4>
+            <p class="news-card-desc">Corporate pre-orders get 15% early-bird discounts and custom artisan authentication certificates.</p>
+            <a href="news-diwali-preorder.html" class="news-commerce-link">Read Full News Article →</a>
+          </div>
+        </div>
+
+        <!-- News Item 3 -->
+        <div class="news-card-item">
+          <a href="news-gi-tag.html"><img src="images/clay_figurines.jpg" alt="GI-Tagged Dolls" class="news-thumb-img"></a>
+          <div class="news-card-body">
+            <div class="news-tag-mini">Policy & GI-Tag</div>
+            <h4 class="news-card-title"><a href="news-gi-tag.html" style="color:inherit;text-decoration:none;">QR-Code Origin Authentication Rolled Out for Krishnanagar Dolls</a></h4>
+            <p class="news-card-desc">Anti-counterfeiting seals now verify authentic Ghurni river silt origin on all institutional export orders.</p>
+            <a href="news-gi-tag.html" class="news-commerce-link">Read Full News Article →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Live Bulk Sourcing Opportunities (Quick RFQ) -->
+      <div class="panel-box">
+        <div class="sec-head" style="border-bottom-color:#1A2744;margin-bottom:1rem;">
+          <div class="sec-head-title">
+            <span>📋</span>
+            <span>Live Bulk Sourcing Opportunities</span>
+          </div>
+          <span style="font-size:.72rem;color:#7A7A9A;font-weight:600;">Updated Today</span>
+        </div>
+
+        <a href="product.html" class="opp-item-row">
+          <div>
+            <div class="opp-item-title">Panchmura Horse Signature Sets (Batch Ready)</div>
+            <div class="opp-item-meta">Panchmura Cluster · Ships in 7 days · MOQ 5 pcs</div>
+          </div>
+          <div class="opp-item-price">₹2,400 / pc<span>Instant RFQ ›</span></div>
+        </a>
+
+        <a href="product.html" class="opp-item-row">
+          <div>
+            <div class="opp-item-title">Krishnanagar Miniature Clay Dolls (Hospitality Pack)</div>
+            <div class="opp-item-meta">Ghurni, Nadia · Ships in 10 days · MOQ 10 sets</div>
+          </div>
+          <div class="opp-item-price">₹1,200 / set<span>Instant RFQ ›</span></div>
+        </a>
+
+        <a href="product.html" class="opp-item-row">
+          <div>
+            <div class="opp-item-title">Earthy Minimalist Terracotta Planter Pack</div>
+            <div class="opp-item-meta">Panchmura Cluster · Ships in 5 days · MOQ 20 sets</div>
+          </div>
+          <div class="opp-item-price">₹680 / set<span>Instant RFQ ›</span></div>
+        </a>
+
+        <a href="product.html" class="opp-item-row">
+          <div>
+            <div class="opp-item-title">Festive Terracotta Diya & Ritual Gift Sets</div>
+            <div class="opp-item-meta">Bankura SHG · Ships in 12 days · MOQ 50 boxes</div>
+          </div>
+          <div class="opp-item-price">₹1,800 / box<span>Instant RFQ ›</span></div>
+        </a>
+
+        <div style="text-align:center;margin-top:1rem;">
+          <a href="marketplace.html" class="btn btn-outline btn-block" style="font-size:.82rem;">Browse All Sourcing Opportunities →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ARTISAN SUCCESS STORIES & SOCIAL PROOF -->
+<section class="impact-section" id="success-stories">
+  <div class="container">
+    <div style="text-align:center;max-width:700px;margin:0 auto 2.5rem;">
+      <span style="color:#F5C518;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:inline-block;margin-bottom:.5rem;">Social Commerce Impact</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#fff;margin-bottom:.6rem;">How Institutional Orders Empower Bengal's Clay Clusters</h2>
+      <p style="color:rgba(255,255,255,0.7);font-size:.9rem;line-height:1.6;">CraftCapital eliminates 4 layers of middlemen, putting 100% of fair product value directly in the bank accounts of artisan families.</p>
+    </div>
+
+    <div class="impact-grid">
+
+      <!-- Impact 1 -->
+      <div class="impact-card">
+        <div class="impact-client">Hospitality Project · Kolkata</div>
+        <h3 class="impact-title"><a href="story-itc-sonar.html" style="color:#fff;text-decoration:underline;">ITC Sonar Eco-Renovation Project</a></h3>
+        <p class="impact-desc">1,400 custom terracotta planters and decorative horse wall motifs sourced directly from 22 Panchmura families. Delivered in 3 weeks with ₹9.6 Lakh direct payout.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;">
+          <span class="impact-stat-pill">✨ ₹9.6L Direct Artisan Earnings</span>
+          <a href="story-itc-sonar.html" style="color:#F5C518;font-size:.78rem;font-weight:600;">Read Case Study →</a>
+        </div>
+      </div>
+
+      <!-- Impact 2 -->
+      <div class="impact-card">
+        <div class="impact-client">Corporate Gifting · New Town, Kolkata</div>
+        <h3 class="impact-title"><a href="news-diwali-preorder.html" style="color:#fff;text-decoration:underline;">Tech Mahindra Diwali Gifting</a></h3>
+        <p class="impact-desc">850 curated clay diya gift sets with artisan bio cards delivered on-time for festival employee appreciation with 99.8% zero-breakage guarantee.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;">
+          <span class="impact-stat-pill">✨ 850 Families Celebrated</span>
+          <a href="news-diwali-preorder.html" style="color:#F5C518;font-size:.78rem;font-weight:600;">Read Case Study →</a>
+        </div>
+      </div>
+
+      <!-- Impact 3 -->
+      <div class="impact-card">
+        <div class="impact-client">Eco-Tourism · Sunderbans</div>
+        <h3 class="impact-title"><a href="event-dakshinapan.html" style="color:#fff;text-decoration:underline;">Mangrove Eco-Lodge Hospitality Setup</a></h3>
+        <p class="impact-desc">Outfitted 35 luxury cottage suites with unglazed clay water carafes, ambient pendant lamps, and hand-painted terracotta tableware.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;">
+          <span class="impact-stat-pill">✨ 100% Plastic-Free Dining</span>
+          <a href="event-dakshinapan.html" style="color:#F5C518;font-size:.78rem;font-weight:600;">View Hospitality Specs →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Impact Counters -->
+    <div class="impact-counter-bar">
+      <div class="counter-item">
+        <span class="number">80+</span>
+        <span class="label">Verified Master Artisans</span>
+      </div>
+      <div class="counter-item">
+        <span class="number">₹48.5L</span>
+        <span class="label">Direct Artisan Payouts</span>
+      </div>
+      <div class="counter-item">
+        <span class="number">0</span>
+        <span class="label">Middlemen Markups</span>
+      </div>
+      <div class="counter-item">
+        <span class="number">100%</span>
+        <span class="label">GI-Authenticated Bengal Clay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: THIS WEEK'S PRODUCT DROPS (BOTTOM MARKETPLACE SHOWCASE) -->
+<section class="products-bottom-section" id="weekly-drops">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-title">
+        <span>🏺</span>
+        <span>This Week's Product Drops (Curated Catalog)</span>
+      </div>
+      <a href="marketplace.html" class="sec-head-link">View Full Marketplace (200+ Products) →</a>
+    </div>
+
+    <div class="picks-grid">
+
+      <!-- Product 1 -->
+      <div class="pick-card">
+        <div class="pick-img">
+          <img src="images/panchmura_horse.jpg" alt="Panchmura Horse — Signature Large terracotta sculpture">
+          <span class="pick-cat">Wall Décor</span>
+        </div>
+        <div class="pick-body">
+          <div class="pick-type">Terracotta · Bankura</div>
+          <h3 class="pick-name">Panchmura Horse — Signature Large</h3>
+          <p class="pick-desc">Iconic Bishnupur terracotta horse, hand-sculpted, corporate gifting bestseller.</p>
+          <div class="pick-meta">📅 Ships in 10–15 days &nbsp;·&nbsp; Verified GI</div>
+        </div>
+        <div class="pick-footer-actions">
+          <div class="pick-price">
+            ₹2,400 / pc
+            <span>MOQ 5 pcs</span>
+          </div>
+          <button class="pick-add-btn" onclick="cartManager.addItem({id:'prod-1',name:'Panchmura Horse — Signature Large',price:2400,image:'images/panchmura_horse.jpg'}, 5)">
+            🛒 Add 5
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="pick-card">
+        <div class="pick-img">
+          <img src="images/clay_figurines.jpg" alt="Krishnanagar Clay Figurines Set — traditional handcrafted dolls">
+          <span class="pick-cat">Figurines</span>
+        </div>
+        <div class="pick-body">
+          <div class="pick-type">Clay Craft · Nadia</div>
+          <h3 class="pick-name">Krishnanagar Clay Figurines Set</h3>
+          <p class="pick-desc">A 12-piece handcrafted set — 400-year-old realistic tradition from Ghurni artisans.</p>
+          <div class="pick-meta">📅 Ships in 7–12 days &nbsp;·&nbsp; Hand-Painted</div>
+        </div>
+        <div class="pick-footer-actions">
+          <div class="pick-price">
+            ₹1,200 / set
+            <span>MOQ 10 sets</span>
+          </div>
+          <button class="pick-add-btn" onclick="cartManager.addItem({id:'prod-2',name:'Krishnanagar Clay Figurines Set',price:1200,image:'images/clay_figurines.jpg'}, 10)">
+            🛒 Add 10
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="pick-card">
+        <div class="pick-img">
+          <img src="images/terracotta_planters.jpg" alt="Terracotta Planter Set — 3-piece earthy minimalist clay planters">
+          <span class="pick-cat">Home Décor</span>
+        </div>
+        <div class="pick-body">
+          <div class="pick-type">Terracotta · Bankura</div>
+          <h3 class="pick-name">Terracotta Planter Set (3-Piece)</h3>
+          <p class="pick-desc">Earthy minimalist planters for boutique hotels, cafes, and interior projects.</p>
+          <div class="pick-meta">📅 Ships in 5–8 days &nbsp;·&nbsp; Porous Clay</div>
+        </div>
+        <div class="pick-footer-actions">
+          <div class="pick-price">
+            ₹680 / set
+            <span>MOQ 20 sets</span>
+          </div>
+          <button class="pick-add-btn" onclick="cartManager.addItem({id:'prod-3',name:'Terracotta Planter Set (3-piece)',price:680,image:'images/terracotta_planters.jpg'}, 20)">
+            🛒 Add 20
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="pick-card">
+        <div class="pick-img">
+          <img src="images/clay_lamp_diya.jpg" alt="Festive Corporate Gift Box — Diwali Terracotta Collection">
+          <span class="pick-cat">Gift Set</span>
+        </div>
+        <div class="pick-body">
+          <div class="pick-type">Corporate Gift · Bengal</div>
+          <h3 class="pick-name">Festive Corporate Gift Box — Diwali</h3>
+          <p class="pick-desc">Curated terracotta gift box with diyas and horse motif — custom branding included.</p>
+          <div class="pick-meta">📅 Pre-order open now &nbsp;·&nbsp; Eco Pack</div>
+        </div>
+        <div class="pick-footer-actions">
+          <div class="pick-price">
+            ₹1,800 / box
+            <span>MOQ 50 boxes</span>
+          </div>
+          <button class="pick-add-btn" onclick="cartManager.addItem({id:'prod-4',name:'Festive Corporate Gift Box — Diwali',price:1800,image:'images/clay_lamp_diya.jpg'}, 50)">
+            🛒 Add 50
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="marketplace.html" class="btn btn-primary btn-lg">Browse Full Marketplace (200+ Products) →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PAST DIGEST ISSUES PREVIEW -->
+<section class="past-issues-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-title">
+        <span>📚</span>
+        <span>Past Issues of Kolkata Craft Weekly</span>
+      </div>
+      <a href="digest-archive.html" class="sec-head-link">View Full Archive (12 Issues) →</a>
+    </div>
+
+    <div class="past-grid">
+
+      <a href="digest-issue.html" class="past-card">
+        <div class="past-img-box">
+          <img src="images/clay_figurines.jpg" alt="Krishnanagar clay dolls issue">
+          <span class="past-badge-tag">#11</span>
+        </div>
+        <div class="past-card-body">
+          <div class="past-date">Aug 18, 2026</div>
+          <div class="past-title">Krishnanagar's Clay Dolls: A 400-Year Legacy of Realism</div>
+        </div>
+      </a>
+
+      <a href="digest-issue.html" class="past-card">
+        <div class="past-img-box">
+          <img src="images/terracotta_planters.jpg" alt="Terracotta planters Diwali issue">
+          <span class="past-badge-tag">#10</span>
+        </div>
+        <div class="past-card-body">
+          <div class="past-date">Aug 11, 2026</div>
+          <div class="past-title">Diwali 2026: Institutional Pre-Order Guide for Corporate Gifting</div>
+        </div>
+      </a>
+
+      <a href="digest-issue.html" class="past-card">
+        <div class="past-img-box">
+          <img src="images/panchmura_horse.jpg" alt="Panchmura SHG issue">
+          <span class="past-badge-tag">#09</span>
+        </div>
+        <div class="past-card-body">
+          <div class="past-date">Aug 4, 2026</div>
+          <div class="past-title">Inside a Panchmura SHG: How Cooperatives Are Tripling Artisan Earnings</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: MARKETPLACE BULK PROCUREMENT CTA -->
+<section class="market-cta">
+  <div class="container">
+    <div class="market-cta-inner">
+      <div class="market-cta-text">
+        <h2>Planning a Custom or Bulk Procurement?</h2>
+        <p>Browse 80+ verified artisans, check live batch availability, and request custom corporate samples with zero broker commissions.</p>
+      </div>
+      <div class="market-cta-btns">
+        <a href="marketplace.html" class="btn btn-yellow btn-lg">Explore Marketplace</a>
+        <a href="how-it-works.html" class="btn btn-outline-white">How B2B Sourcing Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: NEWSLETTER SUBSCRIBE BAR -->
+<div class="sub-bar">
+  <div class="sub-bar-inner">
+    <div class="sub-text">
+      <h3>Get Kolkata Craft Weekly in your inbox every Monday.</h3>
+      <p>No spam. Just verified cluster drops, artisan stories, and Kolkata craft event schedules. Joined by 340+ institutional buyers.</p>
+    </div>
+    <form class="sub-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Kolkata Craft Weekly!');">
+      <input type="email" class="sub-input" placeholder="Enter your work email" required>
+      <button type="submit" class="sub-btn">Subscribe Free</button>
+    </form>
+  </div>
+</div>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <div class="social-inner">
+    <div class="social-links">
+      <span>Follow West Bengal Craft Network</span>
+      <a href="#" class="soc-a" title="Instagram">📷</a>
+      <a href="#" class="soc-a" title="Twitter/X">𝕏</a>
+      <a href="#" class="soc-a" title="LinkedIn">in</a>
+      <a href="#" class="soc-a" title="WhatsApp">💬</a>
+    </div>
+    <div class="share-link" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');">Share Kolkata Craft Weekly &nbsp;↗</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Verified B2B social commerce marketplace connecting West Bengal's terracotta artisans directly with institutional buyers. Zero middlemen.</p>
+        <p>📍 Kolkata, West Bengal · India</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul>
+          <li><a href="marketplace.html">Browse Products</a></li>
+          <li><a href="artisans.html">Artisan Directory</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Craft Weekly</h4>
+        <ul>
+          <li><a href="index.html">Latest Issue #12</a></li>
+          <li><a href="digest-archive.html">Digest Archive</a></li>
+          <li><a href="digest-issue.html">Featured Editorial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact & RFQs</a></li>
+          <li><a href="login.html">Buyer Login</a></li>
+        </ul>
+        <p style="margin-top:1rem;">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CraftCapital · Kolkata, India</span>
+      <span>Made with ♥ for West Bengal's artisan clusters</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftCapital Weekly — Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744;
+      --secondary: #243358;
+      --accent: #F5C518;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1A1A2E;
+      --text-muted: #4A4A6A;
+      --border: #DDDDE8;
+      --shadow: 0 2px 12px rgba(26,39,68,0.08);
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text); margin-top: 0; }
+    a { color: #1A2744; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Nav Styles */
+    .navbar { background-color: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .logo span { color: #1A2744; }
+    .nav-links { display: flex; list-style: none; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { color: var(--text); font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; border: none; transition: background-color 0.3s; text-decoration: none; }
+    .btn-primary { background-color: #1A2744; color: var(--surface); }
+    .btn-primary:hover { background-color: var(--secondary); }
+    .btn-outline { background-color: transparent; border: 1px solid #1A2744; color: #1A2744; }
+    .btn-outline:hover { background-color: #1A2744; color: var(--surface); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+    .cart-icon { position: relative; font-size: 1.25rem; text-decoration: none; }
+    .cart-badge { position: absolute; top: -8px; right: -8px; background-color: #1A2744; color: white; font-size: 0.75rem; border-radius: 50%; padding: 0.15rem 0.4rem; font-weight: bold; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    /* Digest specific styles */
+    .hero { background-color: var(--surface); padding: 4rem 0; border-bottom: 1px solid var(--border); text-align: center; }
+    .hero-masthead { font-size: 3.5rem; font-family: var(--font-heading); color: #1A2744; margin-bottom: 1rem; letter-spacing: -1px; }
+    .hero-tagline { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+    .hero-meta { display: flex; justify-content: center; gap: 1rem; font-size: 0.875rem; font-weight: 600; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; }
+    
+    .current-issue { padding: 4rem 0; }
+    .issue-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .issue-image { background: var(--border); min-height: 400px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .issue-content { padding: 3rem; }
+    .issue-content h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .issue-highlights { margin: 2rem 0; list-style: none; padding: 0; }
+    .issue-highlights li { margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+    .issue-highlights li::before { content: '🏺'; font-size: 1.2rem; }
+    .issue-highlights strong { display: block; color: #1A2744; font-family: var(--font-heading); font-size: 1.1rem; }
+    
+    .subscribe-section { background-color: var(--secondary); color: var(--surface); padding: 4rem 0; text-align: center; }
+    .subscribe-section h3 { color: var(--accent); font-size: 2rem; margin-bottom: 1rem; }
+    .subscribe-form { display: flex; justify-content: center; gap: 1rem; max-width: 600px; margin: 2rem auto; }
+    .subscribe-form input { padding: 0.75rem 1rem; border-radius: 8px; border: none; font-size: 1rem; flex: 1; }
+    
+    .past-issues { padding: 4rem 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .past-issue-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform 0.2s; box-shadow: var(--shadow); }
+    .past-issue-card:hover { transform: translateY(-4px); }
+    .past-issue-img { height: 200px; background: #e0d0c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .past-issue-content { padding: 1.5rem; }
+    .past-issue-meta { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .past-issue-content h4 { font-size: 1.25rem; margin-bottom: 1rem; }
+    
+    .benefits { padding: 4rem 0; background: var(--surface); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    .benefit-icon { font-size: 2.5rem; margin-bottom: 1rem; color: #1A2744; }
+    
+    /* Footer Styles */
+    .footer { background-color: var(--surface); border-top: 1px solid var(--border); padding: 4rem 0 2rem; margin-top: 4rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; margin-bottom: 1rem; }
+    .footer h4 { margin-bottom: 1rem; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer ul a { color: var(--text-muted); }
+    .footer ul a:hover { color: #1A2744; }
+    .footer p { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-meta">
+      <span>Issue #12</span>
+      <span>August 25, 2026</span>
+    </div>
+    <h1 class="hero-masthead">CraftCapital Weekly</h1>
+    <p class="hero-tagline">Your weekly window into West Bengal's terracotta craft world. Free. Curated. For institutional buyers.</p>
+  </div>
+</header>
+
+<section class="current-issue">
+  <div class="container">
+    <div class="issue-card">
+      <div class="issue-image">🐴</div>
+      <div class="issue-content">
+        <span class="past-issue-meta" style="color: #1A2744; display:block; margin-bottom: 0.5rem;">LATEST ISSUE</span>
+        <h2>The Horse That Conquered Tokyo: How Panchmura's Bishnupur Horses Found a New Market</h2>
+        <p>In this week's issue, we dive into the fascinating journey of Bankura horses reaching international corporate boardrooms.</p>
+        
+        <ul class="issue-highlights">
+          <li>
+            <div>
+              <strong>Artisan Spotlight: Kamala Devi</strong>
+              <span>Explore her brand new terracotta planter collection.</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>New Product Drops</strong>
+              <span>3 fresh arrivals from Panchmura and Krishnanagar clusters.</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Cluster News</strong>
+              <span>Upcoming SFURTI workshop & Diwali pre-orders opening soon.</span>
+            </div>
+          </li>
+        </ul>
+        
+        <a href="digest-issue.html" class="btn btn-primary" style="margin-top: 1rem;">Read Full Issue</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="subscribe-section">
+  <div class="container">
+    <h3>Join 340+ institutional buyers</h3>
+    <p>Get CraftCapital Weekly in your inbox every Monday.</p>
+    <form class="subscribe-form">
+      <input type="email" placeholder="Your Work Email" required>
+      <input type="tel" placeholder="WhatsApp Number (Optional)">
+      <button type="submit" class="btn" style="background: var(--accent); color: var(--text);">Subscribe</button>
+    </form>
+    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 1rem;">* Sponsored placements available for verified partners. <a href="contact.html" style="color: var(--accent);">Contact us</a>.</p>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div>
+        <div class="benefit-icon">🆓</div>
+        <h4>100% Free</h4>
+        <p class="text-muted">No paywalls, ever.</p>
+      </div>
+      <div>
+        <div class="benefit-icon">✨</div>
+        <h4>Curated</h4>
+        <p class="text-muted">Only the best products.</p>
+      </div>
+      <div>
+        <div class="benefit-icon">📍</div>
+        <h4>Direct from Clusters</h4>
+        <p class="text-muted">Unfiltered stories & news.</p>
+      </div>
+      <div>
+        <div class="benefit-icon">🚀</div>
+        <h4>Early Access</h4>
+        <p class="text-muted">Be first to new product drops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="past-issues">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h3 style="margin: 0;">Recent Issues</h3>
+      <a href="digest-archive.html" class="btn btn-outline btn-sm">View All Issues</a>
+    </div>
+    
+    <div class="grid-3">
+      <!-- Card 1 -->
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #DDDDE8;">🎎</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #11 — Aug 18, 2026</div>
+          <h4>Krishnanagar's Clay Dolls: A 400-Year Legacy Finding New Buyers</h4>
+          <a href="digest-issue.html" style="font-weight: 600;">Read Issue →</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #F5C518;">🪔</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #10 — Aug 11, 2026</div>
+          <h4>Diwali 2026: Pre-Order Guide for Corporate Gifting Managers</h4>
+          <a href="digest-issue.html" style="font-weight: 600;">Read Issue →</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="past-issue-card">
+        <div class="past-issue-img" style="background: #1A2744; color: white;">🤝</div>
+        <div class="past-issue-content">
+          <div class="past-issue-meta">Issue #09 — Aug 4, 2026</div>
+          <h4>Inside a Panchmura SHG: How Cooperatives Are Changing Artisan Income</h4>
+          <a href="digest-issue.html" style="font-weight: 600;">Read Issue →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

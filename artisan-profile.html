@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranjit Kumar Das - Artisan Profile | CraftCapital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744; --secondary: #243358; --accent: #F5C518;
+      --bg: #F7F5F0; --surface: #FFFFFF; --text: #1A1A2E;
+      --text-muted: #4A4A6A; --border: #DDDDE8;
+      --shadow: 0 2px 12px rgba(26,39,68,0.08);
+      --font-heading: 'Playfair Display', Georgia, serif; --font-body: 'Inter', sans-serif;
+    }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text); margin-top: 0; }
+    a { color: #1A2744; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Nav */
+    .navbar { background-color: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .logo span { color: #1A2744; }
+    .nav-links { display: flex; list-style: none; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { color: var(--text); font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; border: none; transition: background-color 0.3s; text-decoration: none; }
+    .btn-primary { background-color: #1A2744; color: var(--surface); }
+    .btn-primary:hover { background-color: var(--secondary); }
+    .btn-outline { background-color: transparent; border: 1px solid #1A2744; color: #1A2744; }
+    .btn-outline:hover { background-color: #1A2744; color: var(--surface); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+    .cart-icon { position: relative; font-size: 1.25rem; text-decoration: none; }
+    .cart-badge { position: absolute; top: -8px; right: -8px; background-color: #1A2744; color: white; font-size: 0.75rem; border-radius: 50%; padding: 0.15rem 0.4rem; font-weight: bold; }
+
+    /* Profile Specific */
+    .breadcrumb { padding: 1rem 0; font-size: 0.875rem; color: var(--text-muted); }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb a:hover { color: #1A2744; }
+
+    .profile-hero { background: var(--surface); color: var(--text); border-bottom: 1px solid var(--border); padding: 3.5rem 0; }
+    .profile-header { display: flex; gap: 3rem; align-items: center; }
+    .profile-avatar { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); box-shadow: 0 8px 24px rgba(26,39,68,0.15); overflow: hidden; flex-shrink: 0; background: var(--bg); }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .profile-title { flex: 1; }
+    .profile-title h1 { font-size: 3rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; color: #1A2744; }
+    .verified-badge { color: #10B981; background: #ECFDF5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center; border: 1px solid #10B981; font-family: var(--font-body); vertical-align: middle; }
+    .profile-subtitle { font-size: 1.25rem; color: #243358; margin-bottom: 1rem; font-weight: 600; }
+    .profile-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 0.35rem 0.85rem; background: #F0EEE8; color: #1A2744; font-size: 0.85rem; font-weight: 600; border-radius: 20px; border: 1px solid #DDDDE8; box-shadow: 0 1px 4px rgba(26,39,68,0.04); }
+
+    .profile-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; padding: 4rem 0; }
+    
+    .bio h2 { font-size: 2rem; margin-bottom: 1.5rem; color: #1A2744; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .bio p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #444; }
+
+    .artisan-quote { background: var(--bg); padding: 2rem; border-left: 4px solid var(--accent); font-family: var(--font-heading); font-size: 1.25rem; font-style: italic; margin: 3rem 0; color: var(--secondary); }
+
+    .gallery { margin-top: 3rem; }
+    .gallery h3 { margin-bottom: 1.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .gallery-img { height: 200px; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid var(--border); background: var(--bg); }
+    .gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .gallery-img:hover img { transform: scale(1.05); }
+    .gallery-label { position: absolute; bottom: 8px; left: 8px; background: rgba(26,39,68,0.85); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+
+    .stats-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); position: sticky; top: 100px; }
+    .stats-panel h3 { margin-bottom: 1.5rem; }
+    .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 1rem 0; }
+    .stat-row:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
+    .stat-key { color: var(--text-muted); font-weight: 500; }
+    .stat-value { font-weight: 600; color: var(--text); text-align: right; }
+    
+    .products-section { padding: 4rem 0; background: var(--surface); border-top: 1px solid var(--border); }
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .product-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; background: #fff; }
+    .product-img { width: 100%; height: 180px; background: var(--bg); margin-bottom: 1rem; border-radius: 4px; overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    
+    /* Footer */
+    .footer { background-color: var(--surface); border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; margin-bottom: 1rem; }
+    .footer h4 { margin-bottom: 1rem; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer ul a { color: var(--text-muted); }
+    .footer ul a:hover { color: #1A2744; }
+    .footer p { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="artisans.html">← Back to Artisan Directory</a>
+  </div>
+</div>
+
+<header class="profile-hero">
+  <div class="container profile-header">
+    <div class="profile-avatar"><img src="images/artisan_ranjit.jpg" alt="Ranjit Kumar Das Profile Picture"></div>
+    <div class="profile-title">
+      <h1>Ranjit Kumar Das <span class="verified-badge">✓ Verified</span></h1>
+      <div class="profile-subtitle">Master Artisan • Terracotta Horses & Sculptures</div>
+      <div class="profile-tags">
+        <span class="tag">🏺 Panchmura, Bankura</span>
+        <span class="tag">🌟 30+ Years Experience</span>
+        <span class="tag">🤝 Panchmura Mrittika Silpi SHG</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container profile-layout">
+  <div class="bio">
+    <h2>The Artisan's Story</h2>
+    <p>Ranjit Kumar Das is a third-generation artisan from the historic craft village of Panchmura. He learned the intricate art of molding the iconic Bankura horse from his father when he was just ten years old. For decades, his family supplied these terracotta figures to local villages for ritualistic offerings during local festivals.</p>
+    
+    <p>As the demand for authentic Indian handicrafts grew in urban centers, Ranjit became one of the pioneers in his cluster to adapt traditional designs for modern spaces. Recognizing the power of collective bargaining and shared resources, he played a crucial role in strengthening the local Self-Help Group (SHG) network, which now ensures fair wages and access to better kilns for over 50 families.</p>
+    
+    <p>Today, Ranjit oversees a specialized workshop capable of handling significant institutional orders. His pieces are characterized by their robust firing, achieving a deep, rich terracotta red that is highly sought after by corporate gifting companies and boutique hotels alike. He is currently expanding his capacity to meet export interests from buyers in Japan and Europe.</p>
+
+    <div class="artisan-quote">
+      "The clay tells us what it wants to become. We just guide it with our hands, honoring the techniques our ancestors taught us, while creating pieces that can travel the world."
+    </div>
+
+    <div class="gallery">
+      <h3>Artisan's Gallery</h3>
+      <div class="gallery-grid">
+        <div class="gallery-img"><img src="images/gallery_workshop.jpg" alt="Panchmura Artisan Studio Workshop"><span class="gallery-label">Clay Workshop</span></div>
+        <div class="gallery-img"><img src="images/gallery_kiln.jpg" alt="Traditional Wood Fired Kiln"><span class="gallery-label">Wood-Fired Kiln</span></div>
+        <div class="gallery-img"><img src="images/gallery_hands.jpg" alt="Hand Wheel Sculpting"><span class="gallery-label">Master Wheel Sculpting</span></div>
+        <div class="gallery-img"><img src="images/gallery_packaging.jpg" alt="Zero Breakage Packaging"><span class="gallery-label">Inspection & Safe Packaging</span></div>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="stats-panel">
+      <h3>Business Profile</h3>
+      <div class="stat-row">
+        <span class="stat-key">Total Products</span>
+        <span class="stat-value">8</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Min Order Qty (MOQ)</span>
+        <span class="stat-value">5 pieces</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Average Lead Time</span>
+        <span class="stat-value">10-15 days</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Annual Capacity</span>
+        <span class="stat-value">~2,400 pieces</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Languages Spoken</span>
+        <span class="stat-value">Bengali, Basic English</span>
+      </div>
+      
+      <button class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Request Procurement Assistance</button>
+      <button class="btn btn-outline" style="width: 100%;">Ask About Bulk Pricing</button>
+    </div>
+  </aside>
+</div>
+
+<section class="products-section">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin:0;">Products by Ranjit Kumar Das</h2>
+      <a href="marketplace.html" class="btn btn-outline btn-sm">View All in Marketplace</a>
+    </div>
+    
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="images/panchmura_horse.jpg" alt="Classic Bankura Horse"></div>
+        <h4>Classic Bankura Horse (12")</h4>
+        <p class="text-muted">MOQ: 10 pcs</p>
+        <button class="btn btn-primary btn-sm" style="width:100%;" onclick="cartManager.addItem({id:'prod-1',name:'Classic Bankura Horse (12\')',price:2400,image:'images/panchmura_horse.jpg'}, 10)">Add to Enquiry</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="images/terracotta_planters.jpg" alt="Terracotta Elephant Motif"></div>
+        <h4>Earthy Planter Set (3-pc)</h4>
+        <p class="text-muted">MOQ: 20 pcs</p>
+        <button class="btn btn-primary btn-sm" style="width:100%;" onclick="cartManager.addItem({id:'prod-3',name:'Earthy Planter Set (3-pc)',price:680,image:'images/terracotta_planters.jpg'}, 20)">Add to Enquiry</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="images/clay_figurines.jpg" alt="Traditional Urn Showpiece"></div>
+        <h4>Folk Figurine Collector Set</h4>
+        <p class="text-muted">MOQ: 10 sets</p>
+        <button class="btn btn-primary btn-sm" style="width:100%;" onclick="cartManager.addItem({id:'prod-2',name:'Folk Figurine Collector Set',price:1200,image:'images/clay_figurines.jpg'}, 10)">Add to Enquiry</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="images/clay_lamp_diya.jpg" alt="Miniature Corporate Gift Set"></div>
+        <h4>Miniature Corporate Gift Set</h4>
+        <p class="text-muted">MOQ: 25 sets</p>
+        <button class="btn btn-primary btn-sm" style="width:100%;" onclick="cartManager.addItem({id:'prod-4',name:'Miniature Corporate Gift Set',price:1800,image:'images/clay_lamp_diya.jpg'}, 25)">Add to Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

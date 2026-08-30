@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue #12 — CraftCapital Weekly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #1A2744; --secondary: #243358; --accent: #F5C518;
+      --bg: #F7F5F0; --surface: #FFFFFF; --text: #1A1A2E;
+      --text-muted: #4A4A6A; --border: #DDDDE8;
+      --shadow: 0 2px 12px rgba(26,39,68,0.08);
+      --font-heading: 'Playfair Display', Georgia, serif; --font-body: 'Inter', sans-serif;
+    }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.7; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text); margin-top: 0; }
+    a { color: #1A2744; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Nav & Footer */
+    .navbar { background-color: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .logo span { color: #1A2744; }
+    .nav-links { display: flex; list-style: none; gap: 1.5rem; margin: 0; padding: 0; }
+    .nav-links a { color: var(--text); font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #1A2744; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; border: none; transition: background-color 0.3s; text-decoration: none; }
+    .btn-primary { background-color: #1A2744; color: var(--surface); }
+    .btn-primary:hover { background-color: var(--secondary); }
+    .btn-outline { background-color: transparent; border: 1px solid #1A2744; color: #1A2744; }
+    .btn-outline:hover { background-color: #1A2744; color: var(--surface); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+    .cart-icon { position: relative; font-size: 1.25rem; text-decoration: none; }
+    .cart-badge { position: absolute; top: -8px; right: -8px; background-color: #1A2744; color: white; font-size: 0.75rem; border-radius: 50%; padding: 0.15rem 0.4rem; font-weight: bold; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    /* Issue Specific */
+    .newsletter-container { max-width: 800px; margin: 2rem auto; background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .masthead { text-align: center; padding: 3rem 2rem 2rem; border-bottom: 2px solid #1A2744; }
+    .masthead-title { font-size: 3.5rem; color: #1A2744; margin: 0; letter-spacing: -1px; line-height: 1.1; }
+    .masthead-meta { display: flex; justify-content: space-between; margin-top: 1.5rem; font-size: 0.875rem; font-weight: 600; color: var(--secondary); text-transform: uppercase; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.5rem 0; }
+    
+    .issue-content { padding: 3rem 2rem; }
+    .section-title { font-family: var(--font-heading); color: var(--secondary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin: 3rem 0 1.5rem; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 2px; }
+    
+    .feature-story h2 { font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2; }
+    .feature-story img { width: 100%; height: 400px; background: #e0d0c1; object-fit: cover; margin-bottom: 1.5rem; border-radius: 4px; }
+    .feature-story p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #333; }
+    .pull-quote { font-family: var(--font-heading); font-size: 1.5rem; color: #1A2744; font-style: italic; border-left: 4px solid var(--accent); padding-left: 1.5rem; margin: 2rem 0; }
+
+    .artisan-spotlight { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; display: flex; gap: 2rem; align-items: center; margin: 2rem 0; }
+    .artisan-photo { width: 120px; height: 120px; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; flex-shrink: 0; }
+    .artisan-info h3 { margin-bottom: 0.5rem; font-size: 1.5rem; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .product-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+    .product-img { width: 100%; height: 150px; background: #e0d0c1; margin-bottom: 1rem; border-radius: 4px; }
+    .product-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    
+    .news-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border); }
+    .news-item:last-child { border-bottom: none; }
+
+    .founder-note { background: #fff8f0; padding: 2rem; border-radius: 8px; border-left: 4px solid #1A2744; margin: 3rem 0; }
+    
+    .issue-nav { display: flex; justify-content: space-between; padding: 2rem; background: var(--bg); border-top: 1px solid var(--border); }
+    
+    /* Footer */
+    .footer { background-color: var(--surface); border-top: 1px solid var(--border); padding: 4rem 0 2rem; margin-top: 4rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer h3 { color: #1A2744; margin-bottom: 1rem; }
+    .footer h4 { margin-bottom: 1rem; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer ul a { color: var(--text-muted); }
+    .footer ul a:hover { color: #1A2744; }
+    .footer p { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Craft<span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="artisans.html">Artisans</a></li>
+      <li><a href="digest.html">Craft Weekly</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+  </div>
+</nav>
+
+<div class="newsletter-container">
+  <div class="masthead">
+    <h1 class="masthead-title">CRAFTCAPITAL WEEKLY</h1>
+    <p style="color: var(--text-muted); margin-top: 0.5rem;">Free Weekly Digest for Institutional Buyers</p>
+    <div class="masthead-meta">
+      <span>Issue #12</span>
+      <span>August 25, 2026</span>
+    </div>
+  </div>
+  
+  <div style="background: var(--bg); padding: 0.5rem 2rem; display: flex; gap: 1rem; border-bottom: 1px solid var(--border); font-size: 0.875rem;">
+    <a href="#">🔗 Share Issue</a> | <a href="digest-archive.html">📚 View Archive</a>
+  </div>
+
+  <div class="issue-content">
+    
+    <div class="feature-story">
+      <h2 class="section-title">Feature Story</h2>
+      <h2>Panchmura Horses: From Rural Hearths to Corporate Boardrooms</h2>
+      <div style="width:100%; height:400px; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:4rem; margin-bottom:1.5rem;">🐴</div>
+      
+      <p>For centuries, the terracotta horses of Panchmura were crafted strictly for ritualistic purposes in rural Bengal. Placed under village trees as offerings to local deities, their distinctive long necks and pointed ears have always stood as a symbol of devotion.</p>
+      
+      <p>But over the past decade, a quiet revolution has taken place. Today, these same iconic shapes are gracing the lobbies of five-star hotels in Tokyo, executive boardrooms in Mumbai, and corporate gifting hampers across Europe.</p>
+      
+      <div class="pull-quote">
+        "We never imagined our ritual horses would sit on the desks of CEOs. We had to learn how to pack them for flights, and how to scale production without losing the soul of the craft." — Master Artisan Ranjit Das
+      </div>
+      
+      <p>The transition wasn't simple. Institutional buyers demand consistency, high volume, and robust packaging—concepts that were historically foreign to cluster production. At CraftCapital, our mission has been to bridge this exact gap. By verifying Self-Help Groups (SHGs) and implementing quality control protocols at the source, we ensure that corporate buyers receive authentic heritage pieces with modern B2B reliability.</p>
+    </div>
+
+    <h2 class="section-title">Artisan Spotlight</h2>
+    <div class="artisan-spotlight">
+      <div class="artisan-photo">👩🏾‍🎨</div>
+      <div class="artisan-info">
+        <h3>Kamala Devi, Panchmura</h3>
+        <p style="margin-bottom: 1rem;">Kamala leads a 15-woman SHG specializing in functional terracotta. This week, she unveiled a new range of minimalist planters designed specifically for modern office spaces.</p>
+        <a href="artisan-profile.html" class="btn btn-outline btn-sm">View Her Products</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">New This Week</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img">🪴</div>
+        <h4>Geometric Planter Set</h4>
+        <p class="text-muted">Min Order: 20 sets</p>
+        <button class="btn btn-primary btn-sm" style="width:100%; margin-top:0.5rem;">Add to Enquiry</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img">☕</div>
+        <div class="product-img-icon"></div>
+        <h4>Hospitality Kulhad Box</h4>
+        <p class="text-muted">Min Order: 50 boxes</p>
+        <button class="btn btn-primary btn-sm" style="width:100%; margin-top:0.5rem;">Add to Enquiry</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img">🏺</div>
+        <h4>Miniature Horse Awards</h4>
+        <p class="text-muted">Min Order: 15 pcs</p>
+        <button class="btn btn-primary btn-sm" style="width:100%; margin-top:0.5rem;">Add to Enquiry</button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Cluster News</h2>
+    <div class="news-item">
+      <h4>Panchmura SFURTI Workshop</h4>
+      <p>A new training facility funded by the MSME SFURTI scheme is opening next month in Panchmura. This will increase the cluster's drying capacity by 40% during monsoons, significantly reducing lead times for Q3 orders.</p>
+    </div>
+    <div class="news-item">
+      <h4>Diwali Pre-Orders Opening</h4>
+      <p>Krishnanagar artisans are officially opening their books for Diwali 2026 custom corporate gifting orders next Monday. We recommend placing bulk orders before September 15 to secure production capacity.</p>
+    </div>
+
+    <div class="founder-note">
+      <h4 style="color: #1A2744; margin-bottom: 0.5rem;">From the Founder</h4>
+      <p style="margin: 0;">"The growth we're seeing in hospitality sourcing this quarter is unprecedented. Hotels are moving away from mass-produced ceramics toward authentic, storied pieces. We're proud to facilitate these connections." — <em>The CraftCapital Team</em></p>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem; padding: 2rem; border: 1px solid var(--border); border-radius: 8px;">
+      <h4>Ready to Source?</h4>
+      <p>Browse our marketplace or learn more about our direct procurement process.</p>
+      <a href="how-it-works.html" class="btn btn-primary">How Procurement Works</a>
+    </div>
+
+  </div>
+  
+  <div class="issue-nav">
+    <a href="#">← Previous: Issue #11</a>
+    <a href="digest.html">Subscribe to Weekly</a>
+    <span class="text-muted">Next: Issue #13 →</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Craft<span>Capital</span></h3>
+        <p>Connecting West Bengal's terracotta artisans with institutional buyers. Verified. Curated. Direct.</p>
+        <p>📍 Kolkata, West Bengal</p>
+      </div>
+      <div>
+        <h4>Marketplace</h4>
+        <ul><li><a href="marketplace.html">Browse Products</a></li><li><a href="artisans.html">Artisan Directory</a></li><li><a href="how-it-works.html">How It Works</a></li></ul>
+      </div>
+      <div>
+        <h4>CraftCapital Weekly</h4>
+        <ul><li><a href="digest.html">Latest Issue</a></li><li><a href="digest-archive.html">Archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="login.html">Buyer Login</a></li></ul>
+        <p style="margin-top:1rem">© 2026 CraftCapital. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
