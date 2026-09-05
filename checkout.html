@@ -4,133 +4,204 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout | CraftCapital</title>
+  <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
     :root {
       --primary: #1A2744;
       --secondary: #243358;
+      --accent: #F5C518;
       --bg: #F7F5F0;
       --surface: #FFFFFF;
       --text: #1A1A2E;
       --text-muted: #4A4A6A;
       --border: #DDDDE8;
     }
+    * { box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
+    h1, h2, h3, .logo { font-family: 'Playfair Display', Georgia, serif; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-    
+
+    /* Header */
+    .checkout-header { padding: 1.25rem 0; text-align: center; border-bottom: 1px solid var(--border); margin-bottom: 0; background: var(--surface); }
+    .logo { text-decoration: none; color: #1A2744; font-size: 1.6rem; font-weight: 700; }
+    .logo span { color: var(--secondary); }
+
     /* Progress Bar */
-    .progress-bar { display: flex; justify-content: center; align-items: center; padding: 2rem 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
-    .step { display: flex; align-items: center; color: var(--text-muted); font-weight: 500; }
+    .progress-bar { display: flex; justify-content: center; align-items: center; padding: 1.75rem 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .step { display: flex; align-items: center; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; gap: 0.5rem; }
     .step.active { color: #1A2744; }
-    .step.completed { color: #4CAF50; }
-    .step-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid currentColor; margin-right: 0.5rem; font-size: 0.8rem; }
+    .step.completed { color: #2e7d32; }
+    .step-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid currentColor; font-size: 0.8rem; flex-shrink: 0; }
     .step.active .step-icon { background: #1A2744; color: white; border-color: #1A2744; }
-    .step.completed .step-icon { background: #4CAF50; color: white; border-color: #4CAF50; }
-    .step-line { width: 50px; height: 2px; background: var(--border); margin: 0 1rem; }
-    
+    .step.completed .step-icon { background: #2e7d32; color: white; border-color: #2e7d32; }
+    .step-line { width: 50px; height: 2px; background: var(--border); margin: 0 0.75rem; }
+
     /* Layout */
-    .checkout-layout { display: flex; gap: 3rem; margin-bottom: 4rem; }
-    .checkout-form { flex: 0 0 65%; }
-    .order-summary { flex: 0 0 calc(35% - 3rem); background: var(--surface); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); height: fit-content; position: sticky; top: 20px; }
-    
-    /* Form */
-    .form-section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; }
-    .form-section h2 { font-family: 'Playfair Display', Georgia, serif; margin-top: 0; margin-bottom: 1.5rem; color: var(--secondary); font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .form-group { margin-bottom: 1rem; }
+    .checkout-layout { display: flex; gap: 2.5rem; margin: 2rem 0 4rem; }
+    .checkout-form { flex: 0 0 63%; min-width: 0; }
+    .order-summary { flex: 1; background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); height: fit-content; position: sticky; top: 20px; }
+
+    /* Empty cart redirect */
+    #empty-redirect { text-align: center; padding: 4rem 1rem; display: none; }
+
+    /* Form Sections */
+    .form-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; }
+    .form-section h2 { font-size: 1.25rem; margin-top: 0; margin-bottom: 1.25rem; color: var(--secondary); border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { margin: 0; }
     .form-group.full { grid-column: span 2; }
-    label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem; }
-    input[type="text"], input[type="email"], input[type="tel"], textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    input:focus, textarea:focus { outline: none; border-color: #1A2744; }
-    
+    label { display: block; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.875rem; color: var(--text); }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; padding: 0.7rem 0.875rem; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; background: var(--bg); color: var(--text); transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #1A2744; background: white; }
+    input[readonly] { color: var(--text-muted); cursor: default; }
+
     /* Radio Cards */
-    .radio-card { border: 1px solid var(--border); padding: 1rem; border-radius: 4px; display: flex; gap: 1rem; cursor: pointer; margin-bottom: 0.5rem; }
-    .radio-card:hover { border-color: #1A2744; }
-    .radio-card input { margin-top: 0.25rem; }
-    .radio-content strong { display: block; margin-bottom: 0.25rem; }
+    .radio-card { border: 1.5px solid var(--border); padding: 1rem; border-radius: 8px; display: flex; gap: 1rem; cursor: pointer; margin-bottom: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .radio-card:hover { border-color: #1A2744; background: #fafaf7; }
+    .radio-card input[type="radio"] { margin-top: 0.2rem; accent-color: #1A2744; flex-shrink: 0; }
+    .radio-content strong { display: block; margin-bottom: 0.2rem; font-size: 0.95rem; }
     .radio-content span { font-size: 0.85rem; color: var(--text-muted); }
-    
-    .checkbox-group { display: flex; gap: 0.75rem; align-items: flex-start; margin-top: 1.5rem; padding: 1rem; background: #F5F0E6; border-radius: 4px; }
-    .checkbox-group input { margin-top: 0.25rem; }
-    .checkbox-group label { margin-bottom: 0; font-weight: normal; font-size: 0.9rem; }
-    
-    .btn { display: inline-block; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: 500; cursor: pointer; border: none; text-align: center; font-size: 1.1rem; }
+
+    .checkbox-group { display: flex; gap: 0.75rem; align-items: flex-start; margin-top: 1.25rem; padding: 1rem; background: #f5f0e6; border-radius: 8px; border: 1px solid #e8dfc8; }
+    .checkbox-group input { margin-top: 0.2rem; accent-color: #1A2744; flex-shrink: 0; }
+    .checkbox-group label { margin-bottom: 0; font-weight: normal; font-size: 0.875rem; }
+
+    .btn { display: inline-block; padding: 0.875rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; text-align: center; font-size: 1rem; font-family: 'Inter', sans-serif; transition: background 0.2s, transform 0.1s; }
+    .btn:active { transform: scale(0.98); }
     .btn-primary { background: #1A2744; color: white; }
-    .btn-block { display: block; width: 100%; box-sizing: border-box; }
-    
-    /* Summary Items */
-    .summary-items { margin-bottom: 1.5rem; }
-    .s-item { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.95rem; }
-    .s-item span:first-child { color: var(--text-muted); }
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: var(--text-muted); }
-    .summary-row.total { font-size: 1.25rem; font-weight: 700; color: var(--text); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+    .btn-primary:hover { background: #243358; }
+    .btn-block { display: block; width: 100%; }
+
+    /* Summary panel */
+    .summary-title { font-size: 1.3rem; margin: 0 0 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.875rem; }
+    .summary-items { margin-bottom: 1.25rem; }
+    .s-item { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.9rem; }
+    .s-item-name { color: var(--text-muted); flex: 1; }
+    .s-item-price { font-weight: 600; white-space: nowrap; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: var(--text-muted); font-size: 0.9rem; }
+    .summary-row.total { font-size: 1.15rem; font-weight: 700; color: var(--text); border-top: 1.5px solid var(--border); padding-top: 1rem; margin-top: 0.5rem; }
+    .proceed-btn { margin-top: 1.5rem; }
+
+    @media (max-width: 900px) {
+      .checkout-layout { flex-direction: column; }
+      .order-summary { position: static; }
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+    }
   </style>
-  <script src="js/cart.js" defer></script>
-  <script src="js/main.js" defer></script>
 </head>
 <body>
 
-<div class="container">
-  <header style="padding: 1rem 0; text-align: center; border-bottom: 1px solid var(--border); margin-bottom: 1rem;">
+<div class="checkout-header">
+  <div class="container">
     <a href="index.html" class="logo">Craft<span>Capital</span></a>
-  </header>
-
-  <div class="progress-bar">
-    <div class="step completed"><div class="step-icon">✓</div> Cart</div>
-    <div class="step-line"></div>
-    <div class="step active"><div class="step-icon">2</div> Checkout</div>
-    <div class="step-line"></div>
-    <div class="step"><div class="step-icon">3</div> Payment</div>
-    <div class="step-line"></div>
-    <div class="step"><div class="step-icon">4</div> Confirmation</div>
   </div>
-  
-  <div class="checkout-layout">
+</div>
+
+<div class="progress-bar">
+  <div class="step completed"><div class="step-icon">✓</div> Cart</div>
+  <div class="step-line"></div>
+  <div class="step active"><div class="step-icon">2</div> Checkout</div>
+  <div class="step-line"></div>
+  <div class="step"><div class="step-icon">3</div> Payment</div>
+  <div class="step-line"></div>
+  <div class="step"><div class="step-icon">4</div> Confirmation</div>
+</div>
+
+<div class="container">
+
+  <!-- Shown if cart is empty -->
+  <div id="empty-redirect">
+    <h2>Your cart is empty</h2>
+    <p>Add some products before checking out.</p>
+    <a href="marketplace.html" class="btn btn-primary">Browse Marketplace</a>
+  </div>
+
+  <div class="checkout-layout" id="checkout-layout">
     <div class="checkout-form">
-      <form action="payment.html" method="GET">
-        
+      <form id="checkoutForm" novalidate>
+
         <div class="form-section">
           <h2>1. Contact Information</h2>
           <div class="form-grid">
-            <div class="form-group"><label>Full Name</label><input type="text" required></div>
-            <div class="form-group"><label>Company Name</label><input type="text"></div>
-            <div class="form-group"><label>Email Address</label><input type="email" required></div>
-            <div class="form-group"><label>Phone Number</label><input type="tel" required></div>
-            <div class="form-group full"><label>GST Number (Optional - for tax invoice)</label><input type="text"></div>
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" required placeholder="Priya Mehta">
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" placeholder="ABC Hospitality Pvt Ltd">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" required placeholder="priya@company.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group full">
+              <label for="gst">GST Number <span style="font-weight:normal;color:var(--text-muted)">(optional – for tax invoice)</span></label>
+              <input type="text" id="gst" placeholder="22AAAAA0000A1Z5">
+            </div>
           </div>
         </div>
-        
+
         <div class="form-section">
           <h2>2. Delivery Address</h2>
           <div class="form-grid">
-            <div class="form-group full"><label>Address Line 1</label><input type="text" required></div>
-            <div class="form-group full"><label>Address Line 2</label><input type="text"></div>
-            <div class="form-group"><label>City</label><input type="text" required></div>
-            <div class="form-group"><label>State</label><input type="text" required></div>
-            <div class="form-group"><label>PIN Code</label><input type="text" required></div>
-            <div class="form-group"><label>Country</label><input type="text" value="India" readonly></div>
+            <div class="form-group full">
+              <label for="addr1">Address Line 1 *</label>
+              <input type="text" id="addr1" required placeholder="Building / Street">
+            </div>
+            <div class="form-group full">
+              <label for="addr2">Address Line 2</label>
+              <input type="text" id="addr2" placeholder="Area / Landmark">
+            </div>
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" required placeholder="Mumbai">
+            </div>
+            <div class="form-group">
+              <label for="state">State *</label>
+              <input type="text" id="state" required placeholder="Maharashtra">
+            </div>
+            <div class="form-group">
+              <label for="pin">PIN Code *</label>
+              <input type="text" id="pin" required placeholder="400001" maxlength="6">
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" id="country" value="India" readonly>
+            </div>
           </div>
         </div>
-        
+
         <div class="form-section">
           <h2>3. Delivery Preference</h2>
           <label class="radio-card">
-            <input type="radio" name="delivery" checked>
+            <input type="radio" name="delivery" value="standard" checked>
             <div class="radio-content">
               <strong>Standard Logistics Coordination</strong>
-              <span>CraftCapital arranges third-party freight. Cost calculated after checkout. (Estimated 10-15 days after production)</span>
+              <span>CraftCapital arranges third-party freight. Cost calculated after checkout. (Est. 10–15 days after production)</span>
             </div>
           </label>
           <label class="radio-card">
-            <input type="radio" name="delivery">
+            <input type="radio" name="delivery" value="express">
             <div class="radio-content">
               <strong>Express Coordination</strong>
               <span>Faster processing and priority freight booking. (+15% surcharge)</span>
             </div>
           </label>
           <label class="radio-card">
-            <input type="radio" name="delivery">
+            <input type="radio" name="delivery" value="self">
             <div class="radio-content">
               <strong>Self-Arrange (EXW)</strong>
               <span>Buyer will arrange pickup from the artisan cluster directly.</span>
@@ -141,57 +212,144 @@
         <div class="form-section">
           <h2>4. Procurement Notes</h2>
           <div class="form-group full">
-            <label>Any special requirements, customization needs, or delivery instructions?</label>
-            <textarea rows="4" placeholder="E.g., Need specific packaging, staggered delivery dates..."></textarea>
+            <label for="notes">Special requirements, customisation or delivery instructions</label>
+            <textarea id="notes" rows="4" placeholder="E.g., Need specific packaging, staggered delivery dates, custom colour..."></textarea>
           </div>
-          
           <div class="checkbox-group">
-            <input type="checkbox" required id="ack">
+            <input type="checkbox" id="ack" required>
             <label for="ack">I acknowledge that CraftCapital acts as a marketplace facilitator. Shipping is fulfilled by third-party logistics partners, and costs will be billed separately if not self-arranging.</label>
           </div>
         </div>
 
+        <!-- Mobile: submit button inside form -->
+        <button type="submit" class="btn btn-primary btn-block" style="display:none" id="mobileSubmit">Proceed to Payment →</button>
       </form>
     </div>
-    
+
+    <!-- Order Summary Sidebar -->
     <div class="order-summary">
-      <h2 style="font-family:'Playfair Display'; margin-top:0; border-bottom:1px solid var(--border); padding-bottom:1rem;">Order Summary</h2>
-      
-      <div class="summary-items">
-        <div class="s-item">
-          <span>Madhubani Panel (x25)</span>
-          <span>₹21,250</span>
-        </div>
-        <div class="s-item">
-          <span>Figurines Set (x10)</span>
-          <span>₹12,000</span>
-        </div>
+      <h2 class="summary-title">Order Summary</h2>
+      <div class="summary-items" id="co-items">
+        <!-- Populated by JS -->
       </div>
-      
       <div class="summary-row">
         <span>Subtotal</span>
-        <span>₹33,250</span>
+        <span id="co-subtotal">₹0</span>
       </div>
       <div class="summary-row">
         <span>Platform Fee (10%)</span>
-        <span>₹3,325</span>
+        <span id="co-fee">₹0</span>
       </div>
       <div class="summary-row">
-        <span>GST (Estimated)</span>
-        <span>Included</span>
+        <span>Shipping</span>
+        <span>TBD*</span>
       </div>
-      
       <div class="summary-row total">
         <span>Total Payable Now</span>
-        <span>₹36,575</span>
+        <span id="co-total">₹0</span>
       </div>
-      
-      <a href="payment.html" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">Proceed to Payment</a>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem">* Shipping billed separately based on volume &amp; destination.</p>
+      <button type="button" class="btn btn-primary btn-block proceed-btn" id="proceedBtn">Proceed to Payment →</button>
+      <a href="cart.html" style="display:block;text-align:center;margin-top:0.875rem;color:#1A2744;font-size:0.875rem;text-decoration:none;">← Back to Cart</a>
     </div>
   </div>
 </div>
 
+<script src="js/cart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = window.cartManager;
+  const items = cart.getItems();
+
+  const layout = document.getElementById('checkout-layout');
+  const emptyDiv = document.getElementById('empty-redirect');
+
+  // Redirect to marketplace if cart is empty
+  if (items.length === 0) {
+    layout.style.display = 'none';
+    emptyDiv.style.display = 'block';
+    return;
+  }
+
+  // ── Populate summary sidebar ──
+  const subtotal = cart.getTotal();
+  const fee = Math.round(subtotal * 0.10);
+  const total = subtotal + fee;
+
+  document.getElementById('co-items').innerHTML = items.map(item => `
+    <div class="s-item">
+      <span class="s-item-name">${item.name} ×${item.quantity}</span>
+      <span class="s-item-price">${cart.formatCurrency(item.price * item.quantity)}</span>
+    </div>`).join('');
+
+  document.getElementById('co-subtotal').textContent = cart.formatCurrency(subtotal);
+  document.getElementById('co-fee').textContent = cart.formatCurrency(fee);
+  document.getElementById('co-total').textContent = cart.formatCurrency(total);
+
+  // ── Form submission ──
+  function handleSubmit(e) {
+    if (e) e.preventDefault();
+    const form = document.getElementById('checkoutForm');
+
+    // Basic validation
+    const requiredFields = form.querySelectorAll('[required]');
+    let valid = true;
+    requiredFields.forEach(field => {
+      field.style.borderColor = '';
+      if (!field.value.trim() && field.type !== 'checkbox') {
+        field.style.borderColor = '#c0392b';
+        valid = false;
+      }
+      if (field.type === 'checkbox' && !field.checked) {
+        field.closest('.checkbox-group').style.border = '1.5px solid #c0392b';
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      const firstErr = form.querySelector('[style*="c0392b"]');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Save order details to sessionStorage for payment & confirmation pages
+    const delivery = form.querySelector('input[name="delivery"]:checked')?.value || 'standard';
+    const orderDetails = {
+      name: document.getElementById('fullName').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      gst: document.getElementById('gst').value.trim(),
+      address: [
+        document.getElementById('addr1').value.trim(),
+        document.getElementById('addr2').value.trim(),
+        document.getElementById('city').value.trim(),
+        document.getElementById('state').value.trim(),
+        document.getElementById('pin').value.trim(),
+        'India'
+      ].filter(Boolean).join(', '),
+      delivery,
+      notes: document.getElementById('notes').value.trim(),
+      subtotal,
+      fee,
+      total,
+      items: items.map(i => ({ name: i.name, qty: i.quantity, price: i.price }))
+    };
+    sessionStorage.setItem('cc_order', JSON.stringify(orderDetails));
+    window.location.href = 'payment.html';
+  }
+
+  document.getElementById('proceedBtn').addEventListener('click', handleSubmit);
+  document.getElementById('checkoutForm').addEventListener('submit', handleSubmit);
+
+  // Clear red borders on input
+  document.getElementById('checkoutForm').querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+  });
+  document.getElementById('ack').addEventListener('change', function() {
+    this.closest('.checkbox-group').style.border = '';
+  });
+});
+</script>
 </body>
 </html>
-
-
