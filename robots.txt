@@ -6,4 +6,4 @@ Disallow: /payment.html
 Disallow: /login.html
 Disallow: /order-confirmation.html
 
-Sitemap: https://craftcapital.in/sitemap.xml
+Sitemap: https://sumitmaitra.github.io/CraftCapital/sitemap.xml
