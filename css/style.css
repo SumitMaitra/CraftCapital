@@ -1347,10 +1347,28 @@ p:last-child { margin-bottom: 0; }
    RESPONSIVE — MOBILE (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
-  .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: var(--sp-md); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-lg); gap: 2px; z-index: 999; }
-  .nav-links.open { display: flex; }
-  .hamburger { display: block; }
+  /* --- Navigation (works even if pages have conflicting inline CSS) --- */
+  .navbar .nav-links {
+    display: none !important;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column !important;
+    padding: var(--sp-md);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    gap: 2px;
+    z-index: 999;
+  }
+  .navbar .nav-links.open {
+    display: flex !important;
+  }
+  .hamburger { display: block !important; }
+  .navbar { position: relative; } /* ensure absolute children are anchored */
 
+  /* --- Layout grids --- */
   .grid-2 { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr; }
@@ -1358,20 +1376,56 @@ p:last-child { margin-bottom: 0; }
   .product-grid-3 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
+  .marketplace-layout { grid-template-columns: 1fr; }
+  .filter-sidebar { position: static; }
 
+  /* --- Subscribe / Newsletter --- */
   .subscribe-inner { flex-direction: column; align-items: flex-start; }
   .subscribe-form { width: 100%; flex-direction: column; }
   .subscribe-input { width: 100%; }
 
+  /* --- Forms / Checkout --- */
   .form-grid { grid-template-columns: 1fr; }
   .checkout-steps { flex-wrap: wrap; gap: var(--sp-sm); }
   .step-line { width: 30px; }
 
+  /* --- Misc --- */
   .topbar { display: none; }
   .trust-items { gap: var(--sp-lg); }
+
+  /* --- Article / News pages --- */
+  .news-featured-img,
+  .news-article-img { height: 200px !important; }
+  .news-commerce-box,
+  .case-shoppable-box { flex-direction: column !important; align-items: flex-start !important; }
+  .news-commerce-box img,
+  .case-shoppable-box img { width: 100% !important; height: 160px !important; }
+  .news-commerce-box .btn,
+  .case-shoppable-box .btn { width: 100%; justify-content: center; }
+
+  /* --- Cart layout --- */
+  .cart-layout { flex-direction: column; }
+  .cart-summary-box { position: static; }
+
+  /* --- Product page --- */
+  .product-layout { grid-template-columns: 1fr; }
+  .product-gallery-img { height: 280px; }
 }
 
 @media (max-width: 480px) {
   .product-grid-4 { grid-template-columns: 1fr; }
   .product-grid-3 { grid-template-columns: 1fr; }
+
+  /* --- Nav links take full viewport width --- */
+  .navbar .nav-links li a {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* --- Footer --- */
+  .footer-grid { gap: var(--sp-lg); }
+
+  /* --- Buttons full-width in tight contexts --- */
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
 }
